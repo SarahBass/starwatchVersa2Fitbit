@@ -203,7 +203,7 @@ function checkAndUpdateBatteryLevel() {
     printmonth();
     printday();
     year.text = years;
-    //changeBackground();
+    changeBackground();
   }
   //Spaces are used to format text based on longest day Wednesday,
   //Longest month name is September, don't overlap font
@@ -237,14 +237,14 @@ function printday(){
 }
 
 //You can use a convienent way to find your and upload your images
-//https://developer.mozilla.org/en-US/docs/Web/API/File/name
+
 //This is more advanced than how I uploaded minutes and hours
 //It is also cleaner and a better practice for organization
  function changeBackground(){ 
   
   if (months == 0){
     if (dates == 1){background.image = "jan/1.jpeg";}
-    else{background.image = "plain/${dates}.jpeg";}
+    else{background.image = ("plain/" + dates + ".jpeg"); }
   }
   /*
   else if (months == 1){background.image = "feb/${[dates].jpeg}";}
