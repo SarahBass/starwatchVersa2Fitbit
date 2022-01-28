@@ -1,7 +1,18 @@
 /*
+----------------------------------------------
  *  Project:    Star 365 Day Clock Face
  *  Mail:       darahbass@gmail.com
  *  Github:     SarahBass
+ ---------------------------------------------
+ NOTES: This Clock will be larger than normal
+ because it has so many image backgrounds.
+ Images are ALL Free Licence from Vectornator
+ The use of jpegs help reduce size from 229 mb
+ 300x300PNG to 20 mb JPEG for each background
+ -jpegs load slower than PNG in Fitbit Studio-
+ I used PNG for numbers and animations for
+ faster upload, and jpeg for backgrounds
+ ---------------------------------------------
 */
 
 /*--- Import Information from user Account ---*/
