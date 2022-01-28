@@ -1,8 +1,10 @@
 /*
- *  Project:    Versa 2 Dog Clock Face
+ *  Project:    Star 365 Day Clock Face
  *  Mail:       darahbass@gmail.com
  *  Github:     SarahBass
 */
+
+/*--- Import Information from user Account ---*/
 import { geolocation } from "geolocation";
 import clock from "clock";
 import * as document from "document";
@@ -14,6 +16,8 @@ import { today as userActivity } from "user-activity";
 import { Accelerometer } from "accelerometer";
 import { vibration } from "haptics";
 
+
+/*--- Import Information from index.gui ---*/
 let sunrise;
 let sunset;
 let background = document.getElementById("background");
@@ -26,11 +30,15 @@ let hourhand = document.getElementById("hourhand");
 let minutehand = document.getElementById("minutehand");
 let minutehand2 = document.getElementById("minutehand2");
 let colon = document.getElementById("colon");
-// Update the clock every minute
+
+
+// Update the clock every second for steps to be accurate
+//Keep in mind it will check your heart rate every second, 
+//and it will drain your battery more the faster you update
 clock.granularity = "seconds";
 
-// Get a handle on the <text> element
-const myLabel = document.getElementById("myLabel");
+// Get a handle on the <text> elements 
+const myLabel = document.getElementById("myLabel"); // Clock
 const batteryLabel = document.getElementById("batteryLabel");
 const greenbatteryLabel = document.getElementById("greenbatteryLabel");
 const redbatteryLabel = document.getElementById("redbatteryLabel");
@@ -38,7 +46,11 @@ const stepsLabel = document.getElementById("stepsLabel");
 const calendarLabel = document.getElementById("calendarLabel");
 const heartRateLabel = document.getElementById("heartRateLabel");
 
+
+
 // Update the <text> element every tick with the current time
+//This is using .util to export and import accurate time
+//This is where you put all functions that need to update
 clock.ontick = (evt) => {
   let today = evt.date;
   let hours = today.getHours();
@@ -47,6 +59,8 @@ clock.ontick = (evt) => {
   let dates = today.getDate();
   let years = today.getFullYear();
   
+  //There are lots of ways to retrieve data on Month, day, year, etc
+  //I chose just calling upon Javascript through the object today
   
   stepsLabel.text = userActivity.adjusted.steps;
   checkAndUpdateBatteryLevel();
@@ -162,8 +176,36 @@ function printday(){
 }
 
 
-  
-
+ function changeBackground(){
+   
+ } 
+if (months == 0){
+}
+  else if (months == 1){
+    
+  }
+  else if (months == 2){
+    
+  }
+  else if (months == 3){
+  }
+  else if (months == 4){
+  }
+  else if (months == 5){
+  }
+  else if (months == 6){
+  }
+  else if (months == 7){
+  }
+  else if (months == 8){
+  }
+  else if (months == 9){
+  }
+  else if (months == 10){
+  }
+  else if (months == 11){
+  }
+  else {}
 
   
   
