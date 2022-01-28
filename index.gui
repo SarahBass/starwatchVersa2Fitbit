@@ -2,7 +2,7 @@
   <!-- setting background -->
  
   
-  <image id="background" href="jan/day4.jpeg" x="0" y="0" width="100%" height="100%" class="background" />
+  <image id="background" href="placement.png" x="0" y="0" width="100%" height="100%" class="background" />
   
   
   
@@ -15,12 +15,13 @@
   <!-- calendar information -->
   
   
-  <!-- clock information -->
+  <!-- clock information set for September Wednesday, DD MM YYYY-->
+  
   <text id="myLabel" class="myLabel">
-   <text id="day" x="50" y="80" class= "labelyellow"/>
-   <text id="month" x="100" y="80" class= "labelyellow"/> 
-   <text id="date" x="150" y="80" class= "labelyellow"/> 
-   <text id="year" x="200" y="80" class= "labelyellow"/> 
+   <text id="day" x="5" y="77" class= "labelyellow"/>
+   <text id="month" x="92" y="77" class= "labelyellow"/> 
+   <text id="date" x="176" y="77" class= "labelyellow"/> 
+   <text id="year" x="200" y="77" class= "labelyellow"/> 
    
   
   <!-- battery information -->
@@ -33,9 +34,11 @@
   
   <!-- button -->
 
-
+<image id="colon"  class="colon" href="minutesfile/colon.png" />
    <image id="ampm"  class="ampm" href="am.png" />
-
+   <image id="hourhand"  class="hour" href="hoursfile/hour12.png" />
+    <image id="minutehand"  class="minute" href="minutesfile/00.png" />
+     <image id="minutehand2"  class="minute2" href="minutesfile/0.png" />
   <image id="star"  class="staranimate" href="star/star.png" />
   <image id="eyes"  class="staranimate" href="star/eyes.png" />
   <image id="cheeks"  class="staranimate" href="star/cheeks.png" />
