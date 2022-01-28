@@ -119,9 +119,10 @@ clock.ontick = (evt) => {
   myLabel.text = `${hours}:${mins}`; 
   
    /*--- OPTION 2: IMAGES ---*/
-  //simple way to set time with your images replacing text
-  //I used this method so I could change the class of each number
+  //simple way to set time with your images replacing text or numbers
+  //I used this method so I could change the class of each number individually
   //you can assign classes to image objects to position/format as needed
+  //There are better practices to upload images, but this gives control of CSS formatting
 
   if (hours == 1){hourhand.image = "hoursfile/hour1.png";
                   hourhand.class = "hour1";                   }
@@ -237,13 +238,14 @@ function printday(){
 }
 
 //You can use a convienent way to find your and upload your images
-
+//"file location" + number variable + ".imageformat" 
+//Organize your files by number to easily access 
 //This is more advanced than how I uploaded minutes and hours
 //It is also cleaner and a better practice for organization
  function changeBackground(){ 
   
   if (months == 0){
-    if (dates == 1){background.image = "jan/1.jpeg";}
+    if (dates == 28){background.image = "jan/" + dates + ".jpeg";}
     else{background.image = ("plain/" + dates + ".jpeg"); }
   }
   /*
