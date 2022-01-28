@@ -87,6 +87,7 @@ clock.ontick = (evt) => {
   
   
   /*--- Update Stats for Screen ---*/
+  updateScene();
   stepsLabel.text = userActivity.adjusted.steps;
   checkAndUpdateBatteryLevel();
   //AM PM -Change the image based on 24 hours
@@ -118,7 +119,9 @@ clock.ontick = (evt) => {
   myLabel.text = `${hours}:${mins}`; 
   
    /*--- OPTION 2: IMAGES ---*/
-  //Messy and simple way to set time with your images replacing text
+  //simple way to set time with your images replacing text
+  //https://developer.mozilla.org/en-US/docs/Web/API/File/name
+  //Advanced method is better - See Example at end of Program
   if (hours == 1){hourhand.image = "hoursfile/hour1.png";}
   else if (hours == 2){hourhand.image = "hoursfile/hour2.png";}
   else if (hours == 3){hourhand.image = "hoursfile/hour3.png";}
@@ -164,8 +167,9 @@ clock.ontick = (evt) => {
   //Update Scene changes date information and displays background
   //Change the jpeg every 24 hours becuase it loads slower
    if (hours === 0 && mins === 0) {
-  resetDate();}
-  updateScene();
+   //updateScene(); Belongs here after Coding is finished
+   }
+ 
 
    /*--- Battery Functions ---*/
   display.addEventListener('change', function () {
@@ -192,6 +196,7 @@ function checkAndUpdateBatteryLevel() {
     printmonth();
     printday();
     year.text = years;
+    changeBackground();
   }
   
 function printday(){
@@ -221,41 +226,30 @@ function printday(){
   else {month.text = "MONTH";}
 }
 
-
- function changeBackground(){
-   
- } 
-if (months == 0){
-  //jan/${[dates].jpeg}`;
-}
-  else if (months == 1){
-    
-  }
-  else if (months == 2){
-    
-  }
-  else if (months == 3){
-  }
-  else if (months == 4){
-  }
-  else if (months == 5){
-  }
-  else if (months == 6){
-  }
-  else if (months == 7){
-  }
-  else if (months == 8){
-  }
-  else if (months == 9){
-  }
-  else if (months == 10){
-  }
-  else if (months == 11){
-  }
-  else {}
-
+//You can use a convienent way to find your and upload your images
+//https://developer.mozilla.org/en-US/docs/Web/API/File/name
+//This is more advanced than how I uploaded minutes and hours
+//It is also cleaner and a better practice for organization
+ function changeBackground(){ 
   
-  
-}
+  if (months == 0){
+    if (dates == 1){background.image = "jan/1.jpeg";}
+    else{background.image = "${plain/[dates]}.jpeg";}}
+  /*
+  else if (months == 1){background.image = "feb/${[dates].jpeg}";}
+  else if (months == 2){background.image = "mar/${[dates].jpeg}";}
+  else if (months == 3){background.image = "apr/${[dates].jpeg}";}
+  else if (months == 4){background.image = "may/${[dates].jpeg}";}
+  else if (months == 5){background.image = "jun/${[dates].jpeg}";}
+  else if (months == 6){background.image = "jul/${[dates].jpeg}";}
+  else if (months == 7){background.image = "aug/${[dates].jpeg}";}
+  else if (months == 8){background.image = "sep/${[dates].jpeg}";}
+  else if (months == 9){background.image = "oct/${[dates].jpeg}";}
+  else if (months == 10){background.image = "nov/${[dates].jpeg}";}
+  else if (months == 11){background.image = "dec/${[dates].jpeg}";}
+  */
+  else {}  
 
+}
+}
 
