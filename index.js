@@ -61,15 +61,21 @@ clock.ontick = (evt) => {
   
   //There are lots of ways to retrieve data on Month, day, year, etc
   //I chose just calling upon Javascript through the object today
+  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+  //I have seen others use Util to automate this in Util or link to .libs to do this too
+  //It's messy, but I have it all in my index.js for clarity for beginners. 
   
+  
+  /*--- Update Stats for Screen ---*/
   stepsLabel.text = userActivity.adjusted.steps;
   checkAndUpdateBatteryLevel();
-  
+  //AM PM -Change the image based on 24 hours
   if (util.zeroPad(hours) <12){
   ampm.image = "am.png";}
   if (util.zeroPad(hours) >= 12){ampm.image = "pm.png";}
   
-   
+  
+  //Setting Preference 24 vs 12
   if (preferences.clockDisplay === "12h") {
     // 12h format
     hours = hours % 12 || 12;
@@ -77,8 +83,22 @@ clock.ontick = (evt) => {
     // 24h format
     hours = util.zeroPad(hours);
   }
+  
+  /*--- Calling util in common to export/import time ---*/
   let mins = util.zeroPad(today.getMinutes());
-  myLabel.text = `${hours}:${mins}`;
+  
+  /*--- SHOW TIME ---*/
+  //Fitbit does not have many text options natively to show text
+  //Check out these examples to see how people design their clock:
+  //https://github.com/Fitbit/ossapps  
+  //You can use text or images to show time
+  
+  /*--- OPTION 1: TEXT ---*/
+  //This is how to set a clock with text 
+  myLabel.text = `${hours}:${mins}`; 
+  
+   /*--- OPTION 2: IMAGES ---*/
+  //Messy and simple way to set time with your images replacing text
   if (hours == 1){hourhand.image = "hoursfile/hour1.png";}
   else if (hours == 2){hourhand.image = "hoursfile/hour2.png";}
   else if (hours == 3){hourhand.image = "hoursfile/hour3.png";}
@@ -92,6 +112,7 @@ clock.ontick = (evt) => {
   else if (hours == 11){hourhand.image = "hoursfile/hour11.png";}
   else{hourhand.image = "hoursfile/hour12.png"}
   
+  //Minute hand % 10 will return ones digit
   if (mins%10 == 1 ){minutehand2.image = "minutesfile/1.png";}
   else if (mins%10 == 2 ){minutehand2.image = "minutesfile/2.png";}
   else if (mins%10 == 3 ){minutehand2.image = "minutesfile/3.png";}
@@ -105,6 +126,8 @@ clock.ontick = (evt) => {
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
   
+  //Minute hand /10 will return tens digit, but ints don't exist in Javascript
+  //Use the parseInt function to turn quotient into an integer
     if ( parseInt(mins/10) == 1 ){minutehand.image = "minutesfile/1.png";}
   else if (parseInt(mins/10) == 2 ){minutehand.image = "minutesfile/2.png";}
   else if ( parseInt(mins/10) == 3 ){minutehand.image = "minutesfile/3.png";}
@@ -117,6 +140,7 @@ clock.ontick = (evt) => {
   else if (parseInt(mins/10) == 0 ){minutehand.image = "minutesfile/0.png";}
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
+  
   
    if (hours === 0 && mins === 0) {
   resetDate();}
