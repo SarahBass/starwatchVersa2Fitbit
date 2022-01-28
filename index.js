@@ -120,10 +120,13 @@ clock.ontick = (evt) => {
   
    /*--- OPTION 2: IMAGES ---*/
   //simple way to set time with your images replacing text
-  //https://developer.mozilla.org/en-US/docs/Web/API/File/name
-  //Advanced method is better - See Example at end of Program
-  if (hours == 1){hourhand.image = "hoursfile/hour1.png";}
-  else if (hours == 2){hourhand.image = "hoursfile/hour2.png";}
+  //I used this method so I could change the class of each number
+  //you can assign classes to image objects to position/format as needed
+
+  if (hours == 1){hourhand.image = "hoursfile/hour1.png";
+                  hourhand.class = "hour1";                   }
+  else if (hours == 2){hourhand.image = "hoursfile/hour2.png";
+                      hourhand.class = "hour";                }
   else if (hours == 3){hourhand.image = "hoursfile/hour3.png";}
   else if (hours == 4){hourhand.image = "hoursfile/hour4.png";}
   else if (hours == 5){hourhand.image = "hoursfile/hour5.png";}
@@ -136,8 +139,10 @@ clock.ontick = (evt) => {
   else{hourhand.image = "hoursfile/hour12.png"}
   
   //Minute hand % 10 will return ones digit
-  if (mins%10 == 1 ){minutehand2.image = "minutesfile/1.png";}
-  else if (mins%10 == 2 ){minutehand2.image = "minutesfile/2.png";}
+  if (mins%10 == 1 ){minutehand2.image =      "minutesfile/1.png";     
+                                     minutehand2.class = "minute3";}
+  else if (mins%10 == 2 ){minutehand2.image = "minutesfile/2.png";
+                                    minutehand2.class = "minute2";}
   else if (mins%10 == 3 ){minutehand2.image = "minutesfile/3.png";}
   else if (mins%10 == 4 ){minutehand2.image = "minutesfile/4.png";}
   else if (mins%10 == 5 ){minutehand2.image = "minutesfile/5.png";}
@@ -151,8 +156,10 @@ clock.ontick = (evt) => {
   
   //Minute hand /10 will return tens digit, but ints don't exist in Javascript
   //Use the parseInt function to turn quotient into an integer
-    if ( parseInt(mins/10) == 1 ){minutehand.image = "minutesfile/1.png";}
-  else if (parseInt(mins/10) == 2 ){minutehand.image = "minutesfile/2.png";}
+    if ( parseInt(mins/10) == 1 ){minutehand.image = "minutesfile/1.png";
+                                    minutehand.class = "minute1";          }
+  else if (parseInt(mins/10) == 2 ){minutehand.image = "minutesfile/2.png";
+                                    minutehand.class = "minute";            }                    
   else if ( parseInt(mins/10) == 3 ){minutehand.image = "minutesfile/3.png";}
   else if (parseInt(mins/10) == 4 ){minutehand.image = "minutesfile/4.png";}
   else if (parseInt(mins/10) == 5 ){minutehand.image = "minutesfile/5.png";}
@@ -196,33 +203,36 @@ function checkAndUpdateBatteryLevel() {
     printmonth();
     printday();
     year.text = years;
-    changeBackground();
+    //changeBackground();
   }
-  
+  //Spaces are used to format text based on longest day Wednesday,
+  //Longest month name is September, don't overlap font
 function printday(){
-  if (days == 0){day.text = "Sunday,";}
-  else if (days == 1){day.text = "Monday,";}
-  else if (days == 2){day.text = "Tuesday,";}
+  if (days == 0){day.text =      "       Sunday,";}
+  else if (days == 1){day.text = "      Monday,";}
+  else if (days == 2){day.text = "      Tuesday,";}
   else if (days == 3){day.text = "Wednesday,";}
-  else if (days == 4){day.text = "Thursday,";}
-  else if (days == 5){day.text = "Friday,";}
-  else if (days == 6){day.text = "Saturday,";}
+  else if (days == 4){day.text = "    Thursday,";}
+  else if (days == 5){day.text = "          Friday,";}
+  else if (days == 6){day.text = "    Saturday,";}
   else {day.text = "DAY";}
 }
-
+  //Spaces are used to format text based on longest day Wednesday,
+  //Longest month name is September, don't overlap font
+  //"     January"
   function printmonth(){
-  if (months == 0){month.text = "January";}
-  else if (months == 1){month.text = "February";}
-  else if (months == 2){month.text = "March";}
-  else if (months == 3){month.text = "April";}
-  else if (months == 4){month.text = "May";}
-  else if (months == 5){month.text = "June";}
-  else if (months == 6){month.text = "July";}
-  else if (months == 7){month.text = "August";}
-  else if (months == 8){month.text = "Septemper";}
-  else if (months == 9){month.text = "October";}
-  else if (months == 10){month.text = "November";}
-  else if (months == 11){month.text = "December";}
+  if (months == 0){month.text = "     January";}
+  else if (months == 1){month.text =  "    February";}
+  else if (months == 2){month.text =  "        March";}
+  else if (months == 3){month.text =  "           April";}
+  else if (months == 4){month.text =  "            May";}
+  else if (months == 5){month.text =   "           June";}
+  else if (months == 6){month.text =  "            July";}
+  else if (months == 7){month.text =  "       August";}
+  else if (months == 8){month.text =  "Septemper";}
+  else if (months == 9){month.text =  "     October";}
+  else if (months == 10){month.text = " November";}
+  else if (months == 11){month.text = " December";}
   else {month.text = "MONTH";}
 }
 
@@ -234,7 +244,8 @@ function printday(){
   
   if (months == 0){
     if (dates == 1){background.image = "jan/1.jpeg";}
-    else{background.image = "${plain/[dates]}.jpeg";}}
+    else{background.image = "plain/${dates}.jpeg";}
+  }
   /*
   else if (months == 1){background.image = "feb/${[dates].jpeg}";}
   else if (months == 2){background.image = "mar/${[dates].jpeg}";}
