@@ -30,10 +30,16 @@ import { today as userActivity } from "user-activity";
 import { Accelerometer } from "accelerometer";
 import { vibration } from "haptics";
 
+/*--- Create Local Variables for Information Storage ---*/
+let sunrise = 6;  
+let sunset = 17;  
+let bedtime = 22;
+let lunch = 12;
+let breakfast = 7;
+let dinner = 18;
 
 /*--- Import Information from index.gui ---*/
-let sunrise;
-let sunset;
+
 let background = document.getElementById("background");
 let ampm = document.getElementById("ampm");  
 let date = document.getElementById("date");
@@ -74,10 +80,10 @@ clock.ontick = (evt) => {
   let years = today.getFullYear();
   
   //There are lots of ways to retrieve data on Month, day, year, etc
-  //I chose just calling upon Javascript through the object today
+  //I chose just calling upon Javascript through the object 'today'
   //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
   //I have seen others use Util to automate this in Util or link to .libs to do this too
-  //It's messy, but I have it all in my index.js for clarity for beginners. 
+ 
   
   
   /*--- Update Stats for Screen ---*/
@@ -155,12 +161,13 @@ clock.ontick = (evt) => {
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
   
-  
+  //Update Scene changes date information and displays background
+  //Change the jpeg every 24 hours becuase it loads slower
    if (hours === 0 && mins === 0) {
   resetDate();}
   updateScene();
 
-  
+   /*--- Battery Functions ---*/
   display.addEventListener('change', function () {
     if (this.on) {checkAndUpdateBatteryLevel();} 
 });
@@ -179,6 +186,7 @@ function checkAndUpdateBatteryLevel() {
   else {redbatteryLabel.text = `${battery.chargeLevel}%`;}
 }
 
+  /*--- Change Date and Background Functions ---*/
   function updateScene() {
     date.text = dates;
     printmonth();
@@ -218,6 +226,7 @@ function printday(){
    
  } 
 if (months == 0){
+  //jan/${[dates].jpeg}`;
 }
   else if (months == 1){
     
