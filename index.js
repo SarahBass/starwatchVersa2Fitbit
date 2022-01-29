@@ -29,6 +29,7 @@ import { display } from "display";
 import { today as userActivity } from "user-activity";
 import { Accelerometer } from "accelerometer";
 import { vibration } from "haptics";
+//import { me as appbit } from "appbit";
 
 /*--- Create Local Variables for Information Storage ---*/
 let sunrise = 6;  
@@ -37,6 +38,9 @@ let bedtime = 22;
 let lunch = 12;
 let breakfast = 7;
 let dinner = 18;
+//let zone = 0;
+//let heart = 0;
+//let burned = 0;
 
 /*--- Import Information from index.gui ---*/
 
@@ -64,8 +68,9 @@ const greenbatteryLabel = document.getElementById("greenbatteryLabel");
 const redbatteryLabel = document.getElementById("redbatteryLabel");
 const stepsLabel = document.getElementById("stepsLabel");
 const calendarLabel = document.getElementById("calendarLabel");
-const heartRateLabel = document.getElementById("heartRateLabel");
-
+const firelabel = document.getElementById("firelabel");
+const boltlabel = document.getElementById("boltlabel");
+const heartlabel = document.getElementById("heartlabel");
 
 
 //Update the <text> element every tick with the current time
@@ -81,17 +86,20 @@ clock.ontick = (evt) => {
   
   //There are lots of ways to retrieve data on Month, day, year, etc
   //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
- 
-  
-  
+
   /*--- Update Stats for Screen ---*/
   updateScene();
   stepsLabel.text = userActivity.adjusted.steps;
+  firelabel.text = userActivity.adjusted.calories;
+  boltlabel.text = "0";
+  heartlabel.text = "0";
   checkAndUpdateBatteryLevel();
   //AM PM -Change the image based on 24 hours
   if (util.zeroPad(hours) <12){
   ampm.image = "am.png";}
   if (util.zeroPad(hours) >= 12){ampm.image = "pm.png";}
+  
+  
   
   
   //Setting Preference 24 vs 12
@@ -192,7 +200,9 @@ function checkAndUpdateBatteryLevel() {
     batteryLabel.text = `${battery.chargeLevel}%`;}
   else {redbatteryLabel.text = `${battery.chargeLevel}%`;}
 }
+  
 
+  
   /*--- Change Date and Background Functions ---*/
   function updateScene() {
     date.text = dates;
@@ -298,7 +308,6 @@ function printday(){
        else{background.image = ("plain/" + dates + ".jpeg"); } }
          
    else {}  
-
 }
 }
 
