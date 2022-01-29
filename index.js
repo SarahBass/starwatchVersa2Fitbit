@@ -246,12 +246,12 @@ function printday(){
   
   if (months == 0){
     if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
-       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "jan/" + dates + ".jpeg";}
+       (dates == 16)||(dates == 20)||(dates == 24)||(dates == 28)){
+         background.image = "jan/" + dates + ".jpeg";}
     else{background.image = ("plain/" + dates + ".jpeg"); }}
     
     else if (months == 1){
-        if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
-       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "feb/" + dates + ".jpeg";}
+        if (dates < 22 ){background.image = "feb/" + dates + ".jpeg";}
         else{background.image = ("plain/" + dates + ".jpeg"); }}
     
     else if (months == 2){
