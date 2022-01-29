@@ -32,20 +32,21 @@
    <image id="hourhand"  class="hour" href="hoursfile/hour12.png" />
     <image id="minutehand"  class="minute" href="minutesfile/00.png" />
      <image id="minutehand2"  class="minute2" href="minutesfile/0.png" />
+   
  
   <svg>
   <defs>
     <symbol id="demo">
       <g id="demogroup" transform="translate(0%,0%)" pointer-events="visible">
-        <image id="star"  class="staranimate" href="star/star.png" />
+        <image id="star"  class="staranimate" href="star/yellow.png" />
       <image id="eyes"  class="staranimate" href="star/eyes.png" />
       <image id="mouth"  class="staranimate" href="star/mouth.png" />
      <image id="cheeks"  class="staranimate" href="star/cheeks.png" />
       <animateTransform attributeType="translate"
-      from="0%,0%" to="0%,-10%" begin="enable" dur="3" />
+      from="0%,0%" to="0%,-5%" begin="enable" dur="3" />
         
     <animateTransform attributeType="translate"
-      to="0%,0%" from="0%,-10%"begin="enable" dur=".7" />
+      to="0%,0%" from="0%,-5%"begin="enable" dur="3" />
       </g>
     </symbol>
   </defs>
@@ -54,7 +55,10 @@
   </svg>
 </svg>
   
-  
+   <image id="starobject"  class="staranimate" href=" " />
+    <image id="eyesobject"  class="staranimate" href=" " />
+      <image id="mouthobject"  class="staranimate" href=" " />
+     <image id="cheeksobject"  class="staranimate" href=" " />
 
    
   </text>
