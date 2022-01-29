@@ -56,6 +56,10 @@ let starobject = document.getElementById("starobject");
 let mouthobject = document.getElementById("mouthobject");
 let eyesobject = document.getElementById("eyesobject");
 let cheeksobject = document.getElementById("cheeksobject");
+let star = document.getElementById("star");
+let mouth = document.getElementById("mouth");
+let eyes = document.getElementById("eyes");
+let cheeks = document.getElementById("cheeks");
   
 //Update the clock every second for steps to be accurate
 //Keep in mind it will check your heart rate every second, 
@@ -181,6 +185,10 @@ clock.ontick = (evt) => {
       minutehand2.image = " ";}
   
   if ( mins % 2 == 0){
+  star.image = "star/yellow.png";
+  eyes.image = "star/eyes.png";
+  mouth.image = "star/mouth.png";
+  cheeks.image = "star/cheeks.png";      
   starobject.image = "";
   eyesobject.image = "";
   mouthobject.image = "";
@@ -189,7 +197,11 @@ clock.ontick = (evt) => {
   demoinstance.animate("enable"); // Specify the name of the event to trigger
    }, 600);
   }else{
-    starobject.image = "star/bear.png";
+   star.image = "";
+  eyes.image = "";
+  mouth.image = "";
+  cheeks.image = "";    
+  starobject.image = "star/blue.png";
   eyesobject.image = "star/closedeyes.png";
   mouthobject.image = "star/littlemouth.png";
   cheeksobject.image = "star/cheeks.png";  
