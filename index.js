@@ -265,53 +265,63 @@ function printday(){
         else{background.image = ("plain/" + dates + ".jpeg"); }}
     
     else if (months == 2){
-       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
-       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "mar/" + dates + ".jpeg";}
+       if ((dates == 1)||(dates == 2)||(dates == 10)||(dates == 15)||
+           (dates == 16)||(dates == 17)||(dates == 20)||(dates == 21)||
+          (dates == 26)||(dates == 27))
+           {background.image = "mar/" + dates + ".jpeg";}
        else{background.image = ("plain/" + dates + ".jpeg"); }}
     
     else if (months == 3){
-       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
-       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "apr/" + dates + ".jpeg";}
+       if ((dates == 1)||(dates == 2)||(dates == 3)||(dates == 5)||
+       (dates == 10)||(dates == 15)||(dates == 16)||(dates == 17)){
+            background.image = "apr/" + dates + ".jpeg";}
        else{background.image = ("plain/" + dates + ".jpeg"); }}
     
     else if (months == 4){
-       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
-       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "may/" + dates + ".jpeg";}
+       if ((dates == 1)||(dates == 2)||(dates == 4)||(dates == 5)||
+       (dates == 8)||(dates == 10)||(dates == 12)||(dates == 20)||
+       (dates == 21)||(dates == 25)||(dates == 29)){
+           background.image = "may/" + dates + ".jpeg";}
        else{background.image = ("plain/" + dates + ".jpeg"); }}
     
     else if (months == 5){
-       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
-       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "jun/" + dates + ".jpeg";}
+       if ((dates == 1)||(dates == 5)||(dates == 6)||(dates == 10)||
+       (dates == 15)||(dates == 17)){background.image = "jun/" + dates + ".jpeg";}
        else{background.image = ("plain/" + dates + ".jpeg"); }}
         
     else if (months == 6){
-       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
-       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "jul/" + dates + ".jpeg";}
+       if ((dates == 1)||(dates == 4)||(dates == 7)||(dates == 10)||
+       (dates == 11)||(dates == 15)||(dates == 20)(dates == 22)||(dates == 25))
+           {background.image = "jul/" + dates + ".jpeg";}
        else{background.image = ("plain/" + dates + ".jpeg"); }}
            
    else if (months == 7){
-       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
-       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "aug/" + dates + ".jpeg";}
+       if ((dates == 1)||(dates == 3)||(dates == 5)||(dates == 10)||
+       (dates == 15)||(dates == 20)){background.image = "aug/" + dates + ".jpeg";}
        else{background.image = ("plain/" + dates + ".jpeg"); }}    
               
    else if (months == 8){
-       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
-       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "sep/" + dates + ".jpeg";}
+       if ((dates == 1)||(dates == 5)||(dates == 10)||(dates == 11)||
+       (dates == 25)||(dates == 26)||(dates == 27)){
+            background.image = "sep/" + dates + ".jpeg";}
        else{background.image = ("plain/" + dates + ".jpeg"); }}   
       
    else if (months == 9){
-       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
-       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "oct/" + dates + ".jpeg";}
+       if ((dates == 1)||(dates == 3)||(dates == 5)||(dates == 13)||
+       (dates == 20)||(dates == 31)){background.image = "oct/" + dates + ".jpeg";}
        else{background.image = ("plain/" + dates + ".jpeg"); }} 
          
    else if (months == 10){
-       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
-       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "nov/" + dates + ".jpeg";}
+       if ((dates == 1)||(dates == 5)||(dates == 10)||(dates == 15)||
+       (dates == 25)){background.image = "nov/" + dates + ".jpeg";}
        else{background.image = ("plain/" + dates + ".jpeg"); } }
          
    else if (months == 11){
-       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
-       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "dec/" + dates + ".jpeg";}
+       if ((dates == 1)||(dates == 2)||(dates == 3)||(dates == 4)||
+       (dates == 5)||(dates == 10)||(dates == 18)||(dates == 19)||
+       (dates == 20)||(dates == 21)||(dates == 22)||(dates == 23)||
+       (dates == 24)||(dates == 25)){
+            background.image = "dec/" + dates + ".jpeg";}
        else{background.image = ("plain/" + dates + ".jpeg"); } }
          
    else {}  
