@@ -73,6 +73,10 @@ const boltlabel = document.getElementById("boltlabel");
 const heartlabel = document.getElementById("heartlabel");
 
 
+var demoinstance = document.getElementById("demoinstance");
+
+
+
 //Update the <text> element every tick with the current time
 //This is using .util to export and import accurate time
 //This is where you put all functions that need to update
@@ -88,6 +92,7 @@ clock.ontick = (evt) => {
   //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
 
   /*--- Update Stats for Screen ---*/
+  
   updateScene();
   stepsLabel.text = userActivity.adjusted.steps;
   firelabel.text = userActivity.adjusted.calories;
@@ -99,7 +104,9 @@ clock.ontick = (evt) => {
   ampm.image = "am.png";}
   if (util.zeroPad(hours) >= 12){ampm.image = "pm.png";}
   
-  
+  setTimeout(() => {
+  demoinstance.animate("enable"); // Specify the name of the event to trigger
+   }, 1000);
   
   
   //Setting Preference 24 vs 12
