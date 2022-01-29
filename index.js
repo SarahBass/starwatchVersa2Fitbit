@@ -38,9 +38,7 @@ let bedtime = 22;
 let lunch = 12;
 let breakfast = 7;
 let dinner = 18;
-//let zone = 0;
-//let heart = 0;
-//let burned = 0;
+
 
 /*--- Import Information from index.gui ---*/
 
@@ -54,8 +52,11 @@ let hourhand = document.getElementById("hourhand");
 let minutehand = document.getElementById("minutehand");
 let minutehand2 = document.getElementById("minutehand2");
 let colon = document.getElementById("colon");
-
-
+let starobject = document.getElementById("starobject");
+let mouthobject = document.getElementById("mouthobject");
+let eyesobject = document.getElementById("eyesobject");
+let cheeksobject = document.getElementById("cheeksobject");
+  
 //Update the clock every second for steps to be accurate
 //Keep in mind it will check your heart rate every second, 
 //and it will drain your battery more the faster you update
@@ -104,9 +105,6 @@ clock.ontick = (evt) => {
   ampm.image = "am.png";}
   if (util.zeroPad(hours) >= 12){ampm.image = "pm.png";}
   
-  setTimeout(() => {
-  demoinstance.animate("enable"); // Specify the name of the event to trigger
-   }, 1000);
   
   
   //Setting Preference 24 vs 12
@@ -182,6 +180,20 @@ clock.ontick = (evt) => {
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
   
+  if ( mins % 2 == 0){
+  starobject.image = "";
+  eyesobject.image = "";
+  mouthobject.image = "";
+  cheeksobject.image = "";  
+  setTimeout(() => {
+  demoinstance.animate("enable"); // Specify the name of the event to trigger
+   }, 600);
+  }else{
+    starobject.image = "star/bear.png";
+  eyesobject.image = "star/closedeyes.png";
+  mouthobject.image = "star/littlemouth.png";
+  cheeksobject.image = "star/cheeks.png";  
+  };
   //Update Scene changes date information and displays background
   //Change the jpeg every 24 hours becuase it loads slower
    if (hours === 0 && mins === 0) {
