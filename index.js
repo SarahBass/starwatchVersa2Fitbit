@@ -52,7 +52,7 @@ let minutehand2 = document.getElementById("minutehand2");
 let colon = document.getElementById("colon");
 
 
-// Update the clock every second for steps to be accurate
+//Update the clock every second for steps to be accurate
 //Keep in mind it will check your heart rate every second, 
 //and it will drain your battery more the faster you update
 clock.granularity = "seconds";
@@ -68,7 +68,7 @@ const heartRateLabel = document.getElementById("heartRateLabel");
 
 
 
-// Update the <text> element every tick with the current time
+//Update the <text> element every tick with the current time
 //This is using .util to export and import accurate time
 //This is where you put all functions that need to update
 clock.ontick = (evt) => {
@@ -80,9 +80,7 @@ clock.ontick = (evt) => {
   let years = today.getFullYear();
   
   //There are lots of ways to retrieve data on Month, day, year, etc
-  //I chose just calling upon Javascript through the object 'today'
   //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
-  //I have seen others use Util to automate this in Util or link to .libs to do this too
  
   
   
@@ -109,7 +107,6 @@ clock.ontick = (evt) => {
   let mins = util.zeroPad(today.getMinutes());
   
   /*--- SHOW TIME ---*/
-  //Fitbit does not have many text options natively to show text
   //Check out these examples to see how people design their clock:
   //https://github.com/Fitbit/ossapps  
   //You can use text or images to show time
@@ -121,9 +118,7 @@ clock.ontick = (evt) => {
    /*--- OPTION 2: IMAGES ---*/
   //simple way to set time with your images replacing text or numbers
   //I used this method so I could change the class of each number individually
-  //you can assign classes to image objects to position/format as needed
-  //There are better practices to upload images, but this gives control of CSS formatting
-
+  
   if (hours == 1){hourhand.image = "hoursfile/hour1.png";
                   hourhand.class = "hour1";                   }
   else if (hours == 2){hourhand.image = "hoursfile/hour2.png";
@@ -239,9 +234,7 @@ function printday(){
 
 //You can use a convienent way to find your and upload your images
 //"file location" + number variable + ".imageformat" 
-//Organize your files by number to easily access 
-//This is more advanced than how I uploaded minutes and hours
-//It is also cleaner and a better practice for organization
+
  function changeBackground(){ 
   
   if (months == 0){
