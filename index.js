@@ -61,9 +61,7 @@ let mouth = document.getElementById("mouth");
 let eyes = document.getElementById("eyes");
 let cheeks = document.getElementById("cheeks");
   
-//Update the clock every second for steps to be accurate
-//Keep in mind it will check your heart rate every second, 
-//and it will drain your battery more the faster you update
+//Update the clock every second for steps to be smoother
 clock.granularity = "seconds";
 
 // Get a handle on the <text> elements 
@@ -76,8 +74,18 @@ const calendarLabel = document.getElementById("calendarLabel");
 const firelabel = document.getElementById("firelabel");
 const boltlabel = document.getElementById("boltlabel");
 const heartlabel = document.getElementById("heartlabel");
+const saturday =[
+  "        Saturday,",
+  "    Saturday,",
+  "    Saturday,",
+  "    Saturday,",
+  "    Saturday,",
+  "    Saturday,",
+  "    Saturday,"
+  ];
 
 
+ /*--- Animation Groups Imported from Index.gui---*/
 var demoinstance = document.getElementById("demoinstance");
 
 
@@ -123,18 +131,13 @@ clock.ontick = (evt) => {
   /*--- Calling util in common to export/import time ---*/
   let mins = util.zeroPad(today.getMinutes());
   
-  /*--- SHOW TIME ---*/
-  //Check out these examples to see how people design their clock:
-  //https://github.com/Fitbit/ossapps  
-  //You can use text or images to show time
   
-  /*--- OPTION 1: TEXT ---*/
+  /*--- OPTION 1: TIME TEXT ---*/
   //This is how to set a clock with text 
   myLabel.text = `${hours}:${mins}`; 
   
-   /*--- OPTION 2: IMAGES ---*/
-  //simple way to set time with your images replacing text or numbers
-  //I used this method so I could change the class of each number individually
+   /*--- OPTION 2: TIME IMAGES ---*/
+  //set class of each number individually if needed for formatting
   
   if (hours == 1){hourhand.image = "hoursfile/hour1.png";
                   hourhand.class = "hour1";                   }
@@ -148,8 +151,10 @@ clock.ontick = (evt) => {
   else if (hours == 8){hourhand.image = "hoursfile/hour8.png";}
   else if (hours == 9){hourhand.image = "hoursfile/hour9.png";}
   else if (hours == 10){hourhand.image = "hoursfile/hour10.png";}
-  else if (hours == 11){hourhand.image = "hoursfile/hour11.png";}
-  else{hourhand.image = "hoursfile/hour12.png"}
+  else if (hours == 11){hourhand.image = "hoursfile/hour11.png";
+                        hourhand.class = "hour11";}
+  else{hourhand.image = "hoursfile/hour12.png";
+                    hourhand.class = "hour12";}
   
   //Minute hand % 10 will return ones digit
   if (mins%10 == 1 ){minutehand2.image =      "minutesfile/1.png";     
@@ -169,45 +174,29 @@ clock.ontick = (evt) => {
   
   //Minute hand /10 will return tens digit, but ints don't exist in Javascript
   //Use the parseInt function to turn quotient into an integer
-    if ( parseInt(mins/10) == 1 ){minutehand.image = "minutesfile/1.png";
-                                    minutehand.class = "minute1";          }
-  else if (parseInt(mins/10) == 2 ){minutehand.image = "minutesfile/2.png";
-                                    minutehand.class = "minute";            }                    
+    if ( parseInt(mins/10) == 1 ){   minutehand.image = "minutesfile/1.png";
+                                     minutehand.class = "minute1";          }
+  else if (parseInt(mins/10) == 2 ){ minutehand.image = "minutesfile/2.png";
+                                     minutehand.class = "minute";            }                    
   else if ( parseInt(mins/10) == 3 ){minutehand.image = "minutesfile/3.png";}
-  else if (parseInt(mins/10) == 4 ){minutehand.image = "minutesfile/4.png";}
-  else if (parseInt(mins/10) == 5 ){minutehand.image = "minutesfile/5.png";}
-  else if (parseInt(mins/10) == 6 ){minutehand.image = "minutesfile/6.png";}
-  else if (parseInt(mins/10) == 7 ){minutehand.image = "minutesfile/7.png";}
-  else if (parseInt(mins/10) == 8 ){minutehand.image = "minutesfile/8.png";}
-  else if (parseInt(mins/10) == 9 ){minutehand.image = "minutesfile/9.png";}
-  else if (parseInt(mins/10) == 0 ){minutehand.image = "minutesfile/0.png";}
+  else if (parseInt(mins/10) == 4 ){ minutehand.image = "minutesfile/4.png";}
+  else if (parseInt(mins/10) == 5 ){ minutehand.image = "minutesfile/5.png";}
+  else if (parseInt(mins/10) == 6 ){ minutehand.image = "minutesfile/6.png";}
+  else if (parseInt(mins/10) == 7 ){ minutehand.image = "minutesfile/7.png";}
+  else if (parseInt(mins/10) == 8 ){ minutehand.image = "minutesfile/8.png";}
+  else if (parseInt(mins/10) == 9 ){ minutehand.image = "minutesfile/9.png";}
+  else if (parseInt(mins/10) == 0 ){ minutehand.image = "minutesfile/0.png";}
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
   
-  if ( mins % 2 == 0){
-  star.image = "star/yellow.png";
-  eyes.image = "star/eyes.png";
-  mouth.image = "star/mouth.png";
-  cheeks.image = "star/cheeks.png";      
-  starobject.image = "";
-  eyesobject.image = "";
-  mouthobject.image = "";
-  cheeksobject.image = "";  
-  setTimeout(() => {
-  demoinstance.animate("enable"); // Specify the name of the event to trigger
-   }, 600);
-  }else{
-   star.image = "";
-  eyes.image = "";
-  mouth.image = "";
-  cheeks.image = "";    
-  starobject.image = "star/blue.png";
-  eyesobject.image = "star/closedeyes.png";
-  mouthobject.image = "star/littlemouth.png";
-  cheeksobject.image = "star/cheeks.png";  
-  };
-  //Update Scene changes date information and displays background
-  //Change the jpeg every 24 hours becuase it loads slower
+  //Animation using time variables for loops
+  if ( mins % 2 == 0){float();}
+  else{ mouth.image = " ";
+        if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
+        else{mouthobject.image = "star/tinymouth.png";}
+        stand(); }
+  
+ 
    if (hours === 0 && mins === 0) {
    //updateScene(); Belongs here after Coding is finished
    }
@@ -242,8 +231,8 @@ function checkAndUpdateBatteryLevel() {
     year.text = years;
     changeBackground();
   }
-  //Spaces are used to format text based on longest day Wednesday,
-  //Longest month name is September, don't overlap font
+  //Days
+  //Sloppy Practice, but a good visual organization for beginners.
 function printday(){
   if (days == 0){day.text =      "       Sunday,";}
   else if (days == 1){day.text = "      Monday,";}
@@ -251,12 +240,11 @@ function printday(){
   else if (days == 3){day.text = "Wednesday,";}
   else if (days == 4){day.text = "    Thursday,";}
   else if (days == 5){day.text = "          Friday,";}
-  else if (days == 6){day.text = "    Saturday,";}
+  else if (days == 6){if (months < 8){day.text = saturday[months]}
+                      else{day.text = "    Saturday,";}}
   else {day.text = "DAY";}
 }
-  //Spaces are used to format text based on longest day Wednesday,
-  //Longest month name is September, don't overlap font
-  //"     January"
+  //Months
   function printmonth(){
   if (months == 0){month.text = "     January";}
   else if (months == 1){month.text =  "    February";}
@@ -350,5 +338,31 @@ function printday(){
          
    else {}  
 }
+
+//Animation Functions   
+function float (){
+    star.image = "star/yellow.png";
+  eyes.image = "star/eyes.png";
+  mouth.image = "star/mouth.png";
+  cheeks.image = "star/cheeks.png";      
+  starobject.image = "";
+  eyesobject.image = "";
+  mouthobject.image = "";
+  cheeksobject.image = "";  
+  setTimeout(() => {
+  demoinstance.animate("enable"); 
+   }, 600);
+}  
+
+function stand(){
+  star.image = "";
+  eyes.image = "";
+  mouth.image = "";
+  cheeks.image = "";    
+  starobject.image = "star/yellow.png";
+  eyesobject.image = "star/closedeyes.png";
+  cheeksobject.image = "star/cheeks.png";  
+}  
+  
 }
 
