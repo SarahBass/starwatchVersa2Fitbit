@@ -61,7 +61,7 @@ let mouth = document.getElementById("mouth");
 let eyes = document.getElementById("eyes");
 let cheeks = document.getElementById("cheeks");
   
-//Update the clock every second for steps to be smoother
+//Update the clock every second 
 clock.granularity = "seconds";
 
 // Get a handle on the <text> elements 
@@ -96,6 +96,7 @@ var demoinstance = document.getElementById("demoinstance");
 clock.ontick = (evt) => {
   let today = evt.date;
   let hours = today.getHours();
+ 
   let months = today.getMonth();
   let days = today.getDay();
   let dates = today.getDate();
@@ -130,7 +131,7 @@ clock.ontick = (evt) => {
   
   /*--- Calling util in common to export/import time ---*/
   let mins = util.zeroPad(today.getMinutes());
-  
+  let seconds = today.getSeconds();
   
   /*--- OPTION 1: TIME TEXT ---*/
   //This is how to set a clock with text 
@@ -190,11 +191,14 @@ clock.ontick = (evt) => {
       minutehand2.image = " ";}
   
   //Animation using time variables for loops
-  if ( mins % 2 == 0){float();}
-  else{ mouth.image = " ";
-        if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
-        else{mouthobject.image = "star/tinymouth.png";}
-        stand(); }
+  if ( mins % 2 == 0){
+    if (seconds % 2 == 0){mouth.image = "star/notongue.png";}
+              else{mouth.image = "star/littlemouth.png";}
+              float();}
+  else{       if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
+              else{mouthobject.image = "star/tinymouth.png";}
+              stand();
+}
   
  
    if (hours === 0 && mins === 0) {
@@ -225,6 +229,7 @@ function checkAndUpdateBatteryLevel() {
   
   /*--- Change Date and Background Functions ---*/
   function updateScene() {
+    //date.text == dates + " " + monthtext + " " + daytext + " " + years; 
     date.text = dates;
     printmonth();
     printday();
@@ -343,7 +348,7 @@ function printday(){
 function float (){
     star.image = "star/yellow.png";
   eyes.image = "star/eyes.png";
-  mouth.image = "star/mouth.png";
+  mouth.image;
   cheeks.image = "star/cheeks.png";      
   starobject.image = "";
   eyesobject.image = "";
@@ -361,6 +366,7 @@ function stand(){
   cheeks.image = "";    
   starobject.image = "star/yellow.png";
   eyesobject.image = "star/closedeyes.png";
+  mouthobject.image;
   cheeksobject.image = "star/cheeks.png";  
 }  
   
