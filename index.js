@@ -245,23 +245,66 @@ function printday(){
  function changeBackground(){ 
   
   if (months == 0){
-    if (dates == 28){background.image = "jan/" + dates + ".jpeg";}
-    else{background.image = ("plain/" + dates + ".jpeg"); }
-  }
-  /*
-  else if (months == 1){background.image = "feb/${[dates].jpeg}";}
-  else if (months == 2){background.image = "mar/${[dates].jpeg}";}
-  else if (months == 3){background.image = "apr/${[dates].jpeg}";}
-  else if (months == 4){background.image = "may/${[dates].jpeg}";}
-  else if (months == 5){background.image = "jun/${[dates].jpeg}";}
-  else if (months == 6){background.image = "jul/${[dates].jpeg}";}
-  else if (months == 7){background.image = "aug/${[dates].jpeg}";}
-  else if (months == 8){background.image = "sep/${[dates].jpeg}";}
-  else if (months == 9){background.image = "oct/${[dates].jpeg}";}
-  else if (months == 10){background.image = "nov/${[dates].jpeg}";}
-  else if (months == 11){background.image = "dec/${[dates].jpeg}";}
-  */
-  else {}  
+    if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
+       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "jan/" + dates + ".jpeg";}
+    else{background.image = ("plain/" + dates + ".jpeg"); }}
+    
+    else if (months == 1){
+        if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
+       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "feb/" + dates + ".jpeg";}
+        else{background.image = ("plain/" + dates + ".jpeg"); }}
+    
+    else if (months == 2){
+       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
+       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "mar/" + dates + ".jpeg";}
+       else{background.image = ("plain/" + dates + ".jpeg"); }}
+    
+    else if (months == 3){
+       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
+       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "apr/" + dates + ".jpeg";}
+       else{background.image = ("plain/" + dates + ".jpeg"); }}
+    
+    else if (months == 4){
+       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
+       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "may/" + dates + ".jpeg";}
+       else{background.image = ("plain/" + dates + ".jpeg"); }}
+    
+    else if (months == 5){
+       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
+       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "jun/" + dates + ".jpeg";}
+       else{background.image = ("plain/" + dates + ".jpeg"); }}
+        
+    else if (months == 6){
+       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
+       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "jul/" + dates + ".jpeg";}
+       else{background.image = ("plain/" + dates + ".jpeg"); }}
+           
+   else if (months == 7){
+       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
+       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "aug/" + dates + ".jpeg";}
+       else{background.image = ("plain/" + dates + ".jpeg"); }}    
+              
+   else if (months == 8){
+       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
+       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "sep/" + dates + ".jpeg";}
+       else{background.image = ("plain/" + dates + ".jpeg"); }}   
+      
+   else if (months == 9){
+       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
+       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "oct/" + dates + ".jpeg";}
+       else{background.image = ("plain/" + dates + ".jpeg"); }} 
+         
+   else if (months == 10){
+       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
+       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "nov/" + dates + ".jpeg";}
+       else{background.image = ("plain/" + dates + ".jpeg"); } }
+         
+   else if (months == 11){
+       if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
+       (dates == 16)||(dates == 20)||(dates == 28)){background.image = "dec/" + dates + ".jpeg";}
+       else{background.image = ("plain/" + dates + ".jpeg"); } }
+         
+   else {}  
 
 }
 }
