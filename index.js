@@ -57,7 +57,7 @@ let star = document.getElementById("star");
 let mouth = document.getElementById("mouth");
 let eyes = document.getElementById("eyes");
 let cheeks = document.getElementById("cheeks");
-
+let cute = document.getElementById("cute");
   
 //Update the clock every second 
 clock.granularity = "seconds";
@@ -91,7 +91,6 @@ clock.ontick = (evt) => {
   let years = today.getFullYear();
 
  /*--- Update Stats for Screen ---*/
-  
   updateScene();
   stepsLabel.text = userActivity.adjusted.steps;
   firelabel.text = userActivity.adjusted.calories;
@@ -102,7 +101,7 @@ clock.ontick = (evt) => {
   if (util.zeroPad(hours) <12){ampm.image = "am.png";}
   if (util.zeroPad(hours) >= 12){ampm.image = "pm.png";}
   //Get Prize from Steps Goal
-  if (userActivity.adjusted.steps > 3000){goalreached = "show";}
+  if (userActivity.adjusted.steps > 300){goalreached = "show";}
   
   //Setting Preference 24 vs 12
   if (preferences.clockDisplay === "12h") {
@@ -175,6 +174,19 @@ clock.ontick = (evt) => {
   else if (parseInt(mins/10) == 0 ){ minutehand.image = "minutesfile/0.png";}
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
+  
+  if (hours == 9){cuteobject.image = "star/toothbrush.png";}
+                 else if (hours == 12){cuteobject.image = "star/carrot.png";
+                                           cute.image = "star/carrot.png";}
+                 else if (hours == 6){cuteobject.image = "star/apple.png";
+                                           cute.image = "star/apple.png";}
+                 else if (hours == 10){cuteobject.image = "star/zzz.png";
+                                            cute.image = "star/zzz.png";}
+                 else if (hours == 11){cuteobject.image = "star/sleeping.png";
+                                                  cute.image = "star/zzz.png";}
+                 else {cuteobject.image = " ";
+                       cute.image = " ";}
+  
   //ANIMATIONS
 
   if ( mins % 2 == 0){
@@ -184,12 +196,7 @@ clock.ontick = (evt) => {
                          float();    
   }else{             
               //PLAY STAND ANIMATION
-                 if (hours == 9){cuteobject.image = "star/toothbrush.png";}
-                 else if (hours == 12){cuteobject.image = "star/carrot.png";}
-                 else if (hours == 6){cuteobject.image = "star/apple.png";}
-                 else if (hours == 10){cuteobject.image = "star/sleeping.png";}
-                 else if (hours == 11){cuteobject.image = "star/zzz.png";}
-                 else {cuteobject.image = " ";}
+                 
     
                  if ( parseInt(mins/10) == 1 ){
                    if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
@@ -369,7 +376,8 @@ else{star.image = "star/yellow.png";}
   
   eyes.image = "star/eyes.png";
   mouth.image;
-  cheeks.image = "star/cheeks.png";      
+  cheeks.image = "star/cheeks.png";
+  cute.image;
   starobject.image = "";
   eyesobject.image = "";
   mouthobject.image = "";
@@ -394,7 +402,7 @@ function stand(){
   eyesobject.image = "star/closedeyes.png";
   mouthobject.image;
   cheeksobject.image = "star/cheeks.png";
-   
+  cuteobject.image; 
   
 }  
   
