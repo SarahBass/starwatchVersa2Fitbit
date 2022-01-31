@@ -175,7 +175,8 @@ clock.ontick = (evt) => {
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
   
-  if (hours == 9){cuteobject.image = "star/toothbrush.png";}
+  if (hours == 9){cuteobject.image = "star/toothbrush.png";
+                          cute.image = "star/toothbrush.png";}
                  else if (hours == 12){cuteobject.image = "star/carrot.png";
                                            cute.image = "star/carrot.png";}
                  else if (hours == 6){cuteobject.image = "star/apple.png";
@@ -183,7 +184,7 @@ clock.ontick = (evt) => {
                  else if (hours == 10){cuteobject.image = "star/zzz.png";
                                             cute.image = "star/zzz.png";}
                  else if (hours == 11){cuteobject.image = "star/sleeping.png";
-                                                  cute.image = "star/zzz.png";}
+                                                  cute.image = "star/sleeping.png";}
                  else {cuteobject.image = " ";
                        cute.image = " ";}
   
