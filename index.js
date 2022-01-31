@@ -202,24 +202,24 @@ clock.ontick = (evt) => {
                  else if (parseInt(mins/10) == 2 ){
                    if (seconds % 2 == 0){mouthobject.image = "star/circlemouth.png";}
                    else{mouthobject.image = "star/tinycirclemouth.png";}}
-                 }                    
+                                     
                  else if ( parseInt(mins/10) == 3 ){
                    if (seconds % 2 == 0){mouthobject.image = "star/smallsmile.png";}
                    else{mouthobject.image = "star/mouth.png";}}  
-                 }
+                 
                  else if (parseInt(mins/10) == 4 ){ 
                    if (seconds % 2 == 0){mouthobject.image = "star/littleovalmouth.png";}
                    else{mouthobject.image = "star/tinymouth.png";}}
-                 }
+                 
                  else if (parseInt(mins/10) == 5 ){
                    if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
                    else{mouthobject.image = "star/tinymouth.png";}}
                    
-                 }
+                 
                  else if (parseInt(mins/10) == 6 ){ 
                    if (seconds % 2 == 0){mouthobject.image = "star/notongue.png";}
                    else{mouthobject.image = "star/littlemouth.png";}}
-                 }
+                 
                  else if (parseInt(mins/10) == 0 ){ 
                    if (seconds % 2 == 0){mouthobject.image = "star/tinymouth.png";}
                    else{mouthobject.image = "star/tinycirclemouth.png";}}
