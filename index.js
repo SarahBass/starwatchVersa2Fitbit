@@ -397,9 +397,11 @@ function stand(){
                              else {starobject.image = "star/"+ selectnumber+ ".png"}
 //if goal is not reached yellow star
 }else{starobject.image = "star/yellow.png";}
+  star.image = " ";
   eyes.image = " ";
   mouth.image = " ";
-  cheeks.image = " ";    
+  cheeks.image = " ";
+  cute.image = " ";
   eyesobject.image = "star/closedeyes.png";
   mouthobject.image;
   cheeksobject.image = "star/cheeks.png";
