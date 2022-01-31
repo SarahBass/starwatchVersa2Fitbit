@@ -32,15 +32,10 @@ import { vibration } from "haptics";
 //import { me as appbit } from "appbit";
 
 /*--- Create Local Variables for Information Storage ---*/
-let sunrise = 6;  
-let sunset = 17;  
-let bedtime = 22;
-let lunch = 12;
-let breakfast = 7;
-let dinner = 18;
 let daytext = "day";
 let monthtext = "month";
-let goalreached = "false";
+let goalreached = 0;
+let selected = 0;
 
 /*--- Import Information from index.gui ---*/
 
@@ -80,23 +75,22 @@ const heartlabel = document.getElementById("heartlabel");
  /*--- Animation Groups Imported from Index.gui---*/
 var demoinstance = document.getElementById("demoinstance");
 
-
-
+/*--- CLOCK START ---*/
+clock.ontick = (evt) => {
 //Update the <text> element every tick with the current time
 //This is using .util to export and import accurate time
-//This is where you put all functions that need to update
-clock.ontick = (evt) => {
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
   let today = evt.date;
   let hours = today.getHours();
   let months = today.getMonth();
   let days = today.getDay();
   let dates = today.getDate();
   let years = today.getFullYear();
-  
-  //There are lots of ways to retrieve data on Month, day, year, etc
-  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
 
-  /*--- Update Stats for Screen ---*/
+  
+   
+  
+ /*--- Update Stats for Screen ---*/
   
   updateScene();
   stepsLabel.text = userActivity.adjusted.steps;
@@ -109,7 +103,7 @@ clock.ontick = (evt) => {
   ampm.image = "am.png";}
   if (util.zeroPad(hours) >= 12){ampm.image = "pm.png";}
   
-  
+  if (userActivity.adjusted.steps == 400){goalreached++;}
   
   //Setting Preference 24 vs 12
   if (preferences.clockDisplay === "12h") {
@@ -123,7 +117,20 @@ clock.ontick = (evt) => {
   /*--- Calling util in common to export/import time ---*/
   let mins = util.zeroPad(today.getMinutes());
   let seconds = today.getSeconds();
-  
+  /*--- PLAY ANIMATION IF GOAL REACHED ; ELSE SHOW CLOCK---*/  
+    if (goalreached == 1){
+      selectnumber = getRandomInt(14);     
+      vibration.start("ring");
+      background.image = "mysterystar.png";
+      if (seconds % 2 == 0){starobject.image = "star/yellow.png";}
+         else if (seconds % 3 == 0){starobject.image = "star/3.png";}
+         else if (seconds % 5 == 0){starobject.image = "star/6.png";}
+         else if (seconds % 7 == 0){starobject.image = "star/5.png";}
+         else if (seconds % 9 == 0){starobject.image = "star/4.png";}
+         else if (seconds % 11 == 0){goalreached = 2;}
+         else{starobject.image = "star/8.png";}
+  }else{
+  /*----------------------------SHOW CLOCK-----------------------------------*/
   /*--- OPTION 1: TIME TEXT ---*/
   //This is how to set a clock with text 
   myLabel.text = `${hours}:${mins}`; 
@@ -171,7 +178,7 @@ clock.ontick = (evt) => {
     if ( parseInt(mins/10) == 1 ){   minutehand.image = "minutesfile/1.png";
                                      minutehand.class = "minute1";          }
   else if (parseInt(mins/10) == 2 ){ minutehand.image = "minutesfile/2.png";
-                                     minutehand.class = "minute";            }                    
+                                     minutehand.class = "minute2";            }                    
   else if ( parseInt(mins/10) == 3 ){minutehand.image = "minutesfile/3.png";}
   else if (parseInt(mins/10) == 4 ){ minutehand.image = "minutesfile/4.png";}
   else if (parseInt(mins/10) == 5 ){ minutehand.image = "minutesfile/5.png";}
@@ -182,42 +189,34 @@ clock.ontick = (evt) => {
   else if (parseInt(mins/10) == 0 ){ minutehand.image = "minutesfile/0.png";}
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
-  if (goalreached == "goalreached"){
-      background.image = "mysterystar.png";
-      if (seconds % 2 == 0){starobject.image = "star/yellow.png";}
-         else if (seconds % 3 == 0){starobject.image = "star/green.png";}
-         else if (seconds % 5 == 0){starobject.image = "star/blue.png";}
-         else if (seconds % 7 == 0){starobject.image = "star/purple.png";}
-         else if (seconds % 9 == 0){starobject.image = "star/pink.png";}
-         else if (seconds % 11 == 0){starobject.image = "star/" + getRandomInt(14) + ".png";
-                                    goalreached == "stop";}
-         else{starobject.image = "star/blackrainbow.png";}
-         stand();
-  }else{
-  //Animation using time variables for loops
-  if ( mins % 2 == 0){
+  //ANIMATIONS
+  if ( mins % 2 == 0){star.image = "star/yellow.png";
     if (seconds % 2 == 0){mouth.image = "star/notongue.png";}
               else{mouth.image = "star/littlemouth.png";}
               float();}
-  else{       if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
+  else{       starobject.image = "star/yellow.png";
+              if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
               else{mouthobject.image = "star/tinymouth.png";}
               stand();
       }
-  }
+}
  /*
    if (hours === 0 && mins === 0) {
    //updateScene(); Belongs here after Coding is finished
    }
  */
-
-   /*--- Battery Functions ---*/
+/*--- Battery Functions ---*/
   display.addEventListener('change', function () {
     if (this.on) {checkAndUpdateBatteryLevel();} 
+
+  
 });
+/*----------------------------END OF CLOCK-----------------------------------*/
   
 battery.onchange = (charger, evt) => {
     greenBatteryLevel();
 }
+
 
 function greenBatteryLevel() {
     greenbatteryLabel.text = `${battery.chargeLevel}%`;
@@ -341,7 +340,7 @@ function checkAndUpdateBatteryLevel() {
 
 //Animation Functions   
 function float (){
-  star.image = "star/yellow.png";
+  star.image;
   eyes.image = "star/eyes.png";
   mouth.image;
   cheeks.image = "star/cheeks.png";      
@@ -359,7 +358,7 @@ function stand(){
   eyes.image = "";
   mouth.image = "";
   cheeks.image = "";    
-  starobject.image = "star/yellow.png";
+  starobject.image;
   eyesobject.image = "star/closedeyes.png";
   mouthobject.image;
   cheeksobject.image = "star/cheeks.png";  
@@ -368,6 +367,6 @@ function stand(){
  function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
-  
-}
+} 
+
 
