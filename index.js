@@ -242,7 +242,8 @@ clock.ontick = (evt) => {
       }
 
 
-   if (util.zeroPad(hours) === 0 && mins === 0) {selectnumber = Math.floor(Math.random() * 12); }
+   if (hours === 0 && mins === 0) {selectnumber = Math.floor(Math.random() * 12);
+                                   selectlessnumber = Math.floor(Math.random() * 5);}
    
 
 /*--- Battery Functions ---*/
