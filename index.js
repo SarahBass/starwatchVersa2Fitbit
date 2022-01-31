@@ -38,16 +38,15 @@ let bedtime = 22;
 let lunch = 12;
 let breakfast = 7;
 let dinner = 18;
-
+let daytext = "day";
+let monthtext = "month";
+let goalreached = "false";
 
 /*--- Import Information from index.gui ---*/
 
 let background = document.getElementById("background");
 let ampm = document.getElementById("ampm");  
 let date = document.getElementById("date");
-let month = document.getElementById("month");
-let day = document.getElementById("day");
-let year = document.getElementById("year");
 let hourhand = document.getElementById("hourhand");
 let minutehand = document.getElementById("minutehand");
 let minutehand2 = document.getElementById("minutehand2");
@@ -60,6 +59,7 @@ let star = document.getElementById("star");
 let mouth = document.getElementById("mouth");
 let eyes = document.getElementById("eyes");
 let cheeks = document.getElementById("cheeks");
+
   
 //Update the clock every second 
 clock.granularity = "seconds";
@@ -74,15 +74,7 @@ const calendarLabel = document.getElementById("calendarLabel");
 const firelabel = document.getElementById("firelabel");
 const boltlabel = document.getElementById("boltlabel");
 const heartlabel = document.getElementById("heartlabel");
-const saturday =[
-  "        Saturday,",
-  "    Saturday,",
-  "    Saturday,",
-  "    Saturday,",
-  "    Saturday,",
-  "    Saturday,",
-  "    Saturday,"
-  ];
+
 
 
  /*--- Animation Groups Imported from Index.gui---*/
@@ -96,7 +88,6 @@ var demoinstance = document.getElementById("demoinstance");
 clock.ontick = (evt) => {
   let today = evt.date;
   let hours = today.getHours();
- 
   let months = today.getMonth();
   let days = today.getDay();
   let dates = today.getDate();
@@ -159,17 +150,19 @@ clock.ontick = (evt) => {
   
   //Minute hand % 10 will return ones digit
   if (mins%10 == 1 ){minutehand2.image =      "minutesfile/1.png";     
-                                     minutehand2.class = "minute3";}
+                          minutehand2.class = "minute3";}
   else if (mins%10 == 2 ){minutehand2.image = "minutesfile/2.png";
-                                    minutehand2.class = "minute2";}
-  else if (mins%10 == 3 ){minutehand2.image = "minutesfile/3.png";}
+                          minutehand2.class = "minute2";}
+  else if (mins%10 == 3 ){minutehand2.image = "minutesfile/3.png";
+                          minutehand.class =  "minute2";}
   else if (mins%10 == 4 ){minutehand2.image = "minutesfile/4.png";}
   else if (mins%10 == 5 ){minutehand2.image = "minutesfile/5.png";}
   else if (mins%10 == 6 ){minutehand2.image = "minutesfile/6.png";}
   else if (mins%10 == 7 ){minutehand2.image = "minutesfile/7.png";}
   else if (mins%10 == 8 ){minutehand2.image = "minutesfile/8.png";}
   else if (mins%10 == 9 ){minutehand2.image = "minutesfile/9.png";}
-  else if (mins%10 == 0 ){minutehand2.image = "minutesfile/0.png";}
+  else if (mins%10 == 0 ){minutehand2.image = "minutesfile/0.png";
+                          minutehand.class = "minute2";}
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
   
@@ -189,7 +182,18 @@ clock.ontick = (evt) => {
   else if (parseInt(mins/10) == 0 ){ minutehand.image = "minutesfile/0.png";}
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
-  
+  if (goalreached == "goalreached"){
+      background.image = "mysterystar.png";
+      if (seconds % 2 == 0){starobject.image = "star/yellow.png";}
+         else if (seconds % 3 == 0){starobject.image = "star/green.png";}
+         else if (seconds % 5 == 0){starobject.image = "star/blue.png";}
+         else if (seconds % 7 == 0){starobject.image = "star/purple.png";}
+         else if (seconds % 9 == 0){starobject.image = "star/pink.png";}
+         else if (seconds % 11 == 0){starobject.image = "star/" + getRandomInt(14) + ".png";
+                                    goalreached == "stop";}
+         else{starobject.image = "star/blackrainbow.png";}
+         stand();
+  }else{
   //Animation using time variables for loops
   if ( mins % 2 == 0){
     if (seconds % 2 == 0){mouth.image = "star/notongue.png";}
@@ -198,13 +202,13 @@ clock.ontick = (evt) => {
   else{       if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
               else{mouthobject.image = "star/tinymouth.png";}
               stand();
-}
-  
- 
+      }
+  }
+ /*
    if (hours === 0 && mins === 0) {
    //updateScene(); Belongs here after Coding is finished
    }
- 
+ */
 
    /*--- Battery Functions ---*/
   display.addEventListener('change', function () {
@@ -229,49 +233,40 @@ function checkAndUpdateBatteryLevel() {
   
   /*--- Change Date and Background Functions ---*/
   function updateScene() {
-    //date.text == dates + " " + monthtext + " " + daytext + " " + years; 
-    date.text = dates;
-    printmonth();
-    printday();
-    year.text = years;
-    changeBackground();
-  }
-  //Days
-  //Sloppy Practice, but a good visual organization for beginners.
-function printday(){
-  if (days == 0){day.text =      "       Sunday,";}
-  else if (days == 1){day.text = "      Monday,";}
-  else if (days == 2){day.text = "      Tuesday,";}
-  else if (days == 3){day.text = "Wednesday,";}
-  else if (days == 4){day.text = "    Thursday,";}
-  else if (days == 5){day.text = "          Friday,";}
-  else if (days == 6){if (months < 8){day.text = saturday[months]}
-                      else{day.text = "    Saturday,";}}
-  else {day.text = "DAY";}
-}
-  //Months
-  function printmonth(){
-  if (months == 0){month.text = "     January";}
-  else if (months == 1){month.text =  "    February";}
-  else if (months == 2){month.text =  "        March";}
-  else if (months == 3){month.text =  "           April";}
-  else if (months == 4){month.text =  "            May";}
-  else if (months == 5){month.text =   "           June";}
-  else if (months == 6){month.text =  "            July";}
-  else if (months == 7){month.text =  "       August";}
-  else if (months == 8){month.text =  "Septemper";}
-  else if (months == 9){month.text =  "     October";}
-  else if (months == 10){month.text = " November";}
-  else if (months == 11){month.text = " December";}
-  else {month.text = "MONTH";}
-}
+   changeBackground();
+   date.text = " " + daytext + " " + monthtext + " " + dates + " " + years + " ";  
+  if (months == 0){monthtext = "January";}
+  else if (months == 1){monthtext =  "February";}
+  else if (months == 2){monthtext =  "March";}
+  else if (months == 3){monthtext =  "April";}
+  else if (months == 4){monthtext =  "May";}
+  else if (months == 5){monthtext =  "June";}
+  else if (months == 6){monthtext =  "July";}
+  else if (months == 7){monthtext =  "August";}
+  else if (months == 8){monthtext =  "Septemper";}
+  else if (months == 9){monthtext =  "October";}
+  else if (months == 10){monthtext = "November";}
+  else if (months == 11){monthtext = "December";}
+  else {monthtext = "MONTH";}
+    
+  if (days == 0){daytext =      "Sunday,";}
+  else if (days == 1){daytext = "Monday,";}
+  else if (days == 2){daytext = "Tuesday,";}
+  else if (days == 3){daytext = "Wednesday,";}
+  else if (days == 4){daytext = "Thursday,";}
+  else if (days == 5){daytext = "Friday,";}
+  else if (days == 6){if (months < 8){daytext = saturday[months]}
+                      else{daytext = "    Saturday,";}}
+  else {daytext = "DAY";}
+ }
+
 
 //You can use a convienent way to find your and upload your images
 //"file location" + number variable + ".imageformat" 
 
  function changeBackground(){ 
-  
-  if (months == 0){
+
+    if (months == 0){
     if ((dates == 3)||(dates == 5)||(dates == 10)||(dates == 15)||
        (dates == 16)||(dates == 20)||(dates == 24)||(dates == 28)){
          background.image = "jan/" + dates + ".jpeg";}
@@ -346,7 +341,7 @@ function printday(){
 
 //Animation Functions   
 function float (){
-    star.image = "star/yellow.png";
+  star.image = "star/yellow.png";
   eyes.image = "star/eyes.png";
   mouth.image;
   cheeks.image = "star/cheeks.png";      
@@ -369,6 +364,10 @@ function stand(){
   mouthobject.image;
   cheeksobject.image = "star/cheeks.png";  
 }  
+  
+ function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
   
 }
 
