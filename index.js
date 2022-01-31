@@ -36,7 +36,7 @@ let daytext = "day";
 let monthtext = "month";
 let goalreached = "NONE";
 var selectnumber = Math.floor(Math.random() * 12);
-var selectlessnumber = Math.floor(Math.random() * 4);
+var selectlessnumber = Math.floor(Math.random() * 5);
 
 
 /*--- Import Information from index.gui ---*/
