@@ -119,8 +119,11 @@ clock.ontick = (evt) => {
   let seconds = today.getSeconds();
   /*--- PLAY ANIMATION IF GOAL REACHED ; ELSE SHOW CLOCK---*/  
     if (goalreached == 1){
-      selectnumber = getRandomInt(14);     
-      vibration.start("ring");
+      if (months == 2){}
+        else if (months == 9){selectnumber = getRandomInt(4);}
+        else if (months == 11){selectnumber = getRandomInt(3);}
+        else{ selectnumber = getRandomInt(13);}     
+      vibration.start("ping");
       background.image = "mysterystar.png";
       if (seconds % 2 == 0){starobject.image = "star/yellow.png";}
          else if (seconds % 3 == 0){starobject.image = "star/3.png";}
@@ -178,7 +181,7 @@ clock.ontick = (evt) => {
     if ( parseInt(mins/10) == 1 ){   minutehand.image = "minutesfile/1.png";
                                      minutehand.class = "minute1";          }
   else if (parseInt(mins/10) == 2 ){ minutehand.image = "minutesfile/2.png";
-                                     minutehand.class = "minute2";            }                    
+                                     minutehand.class = "minute";            }                    
   else if ( parseInt(mins/10) == 3 ){minutehand.image = "minutesfile/3.png";}
   else if (parseInt(mins/10) == 4 ){ minutehand.image = "minutesfile/4.png";}
   else if (parseInt(mins/10) == 5 ){ minutehand.image = "minutesfile/5.png";}
@@ -190,11 +193,26 @@ clock.ontick = (evt) => {
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
   //ANIMATIONS
-  if ( mins % 2 == 0){star.image = "star/yellow.png";
-    if (seconds % 2 == 0){mouth.image = "star/notongue.png";}
-              else{mouth.image = "star/littlemouth.png";}
-              float();}
-  else{       starobject.image = "star/yellow.png";
+  if ( mins % 2 == 0){if (goalreached == 2){ //if goal is reached give prize 
+                         if (months == 2){star.image = "star/bunny" + numberselected + ".png"}
+                         else if (months == 9){star.image = "star/ghost" + numberselected + ".png"}
+                         else if (months == 11){star.image = "star/santa" + numberselected + ".png"}
+                         else {star.image = "star/"+ selectnumber+ ".png"}
+                      //if goal is not reached yellow star
+                      }else{star.image = "star/yellow.png";}
+                      //PLAY FLOAT ANIMATION
+                      if (seconds % 2 == 0){mouth.image = "star/notongue.png";}
+                      else{mouth.image = "star/littlemouth.png";
+                      float();
+    
+  }else{       if (goalreached == 2){ //if goal is reached give prize 
+                         if (months == 2){starobject.image = "star/bunny" + numberselected + ".png"}
+                         else if (months == 9){starobject.image = "star/ghost" + numberselected + ".png"}
+                         else if (months == 11){starobject.image = "star/santa" + numberselected + ".png"}
+                         else {starobject.image = "star/"+ selectnumber+ ".png"}
+                      //if goal is not reached yellow star
+                      }else{starobject.image = "star/yellow.png";}
+              //PLAY STAND ANIMATION
               if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
               else{mouthobject.image = "star/tinymouth.png";}
               stand();
