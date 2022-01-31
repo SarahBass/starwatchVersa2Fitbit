@@ -211,18 +211,7 @@ clock.ontick = (evt) => {
                    if (seconds % 2 == 0){mouthobject.image = "star/tinymouth.png";}
                    else{mouthobject.image = "star/tinycirclemouth.png";}}
                 
-                 if (util.zeroPad(hours) == 8){"star/apple.png"}
-                 else if (util.zeroPad(hours) == 9){object.image = "star/toothbrush.png";}
-                 else if (util.zeroPad(hours) == 12){object.image = "star/carrot.png";}
-                 else if (util.zeroPad(hours) == 15){object.image = "star/apple.png";}
-                 else if (util.zeroPad(hours) == 18){object.image = "star/carrot.png";}
-                 else if (util.zeroPad(hours) == 21){object.image = "star/toothbrush.png";}
-                 else if (util.zeroPad(hours) == 22){object.image = "star/sleepingbear.png";}
-                 else if (util.zeroPad(hours) == 23){object.image = "star/zzz.png";}
-                 else if (util.zeroPad(hours) == 5){object.image = "star/zzz.png";}
-                 else if (util.zeroPad(hours) == 6){object.image = "star/sleepingbear.png";}
-                 else {object.image = " ";}
-              
+       stand();
       }
 
 
@@ -394,11 +383,22 @@ function stand(){
   eyes.image = " ";
   mouth.image = " ";
   cheeks.image = " ";    
-  starobject.image;
+  
   eyesobject.image = "star/closedeyes.png";
   mouthobject.image;
   cheeksobject.image = "star/cheeks.png";
-  object.image;
+   if (util.zeroPad(hours) == 8){object.image ="star/apple.png";}
+                 else if (util.zeroPad(hours) == 9){object.image = "star/toothbrush.png";}
+                 else if (util.zeroPad(hours) == 12){object.image = "star/carrot.png";}
+                 else if (util.zeroPad(hours) == 15){object.image = "star/apple.png";}
+                 else if (util.zeroPad(hours) == 18){object.image = "star/carrot.png";}
+                 else if (util.zeroPad(hours) == 21){object.image = "star/toothbrush.png";}
+                 else if (util.zeroPad(hours) == 22){object.image = "star/sleepingbear.png";}
+                 else if (util.zeroPad(hours) == 23){object.image = "star/zzz.png";}
+                 else if (util.zeroPad(hours) == 5){object.image = "star/zzz.png";}
+                 else if (util.zeroPad(hours) == 6){object.image = "star/sleepingbear.png";}
+                 else {object.image = " ";}
+  
 }  
   
 
