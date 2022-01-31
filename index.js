@@ -35,7 +35,7 @@ import { vibration } from "haptics";
 let daytext = "day";
 let monthtext = "month";
 let goalreached = "NONE";
-let selected = 0;
+let selectnumber = getRandomInt(12);
 
 /*--- Import Information from index.gui ---*/
 
@@ -104,7 +104,7 @@ clock.ontick = (evt) => {
   ampm.image = "am.png";}
   if (util.zeroPad(hours) >= 12){ampm.image = "pm.png";}
   
-  if (userActivity.adjusted.steps == 500){goalreached = "show";}
+  if (userActivity.adjusted.steps < 500){goalreached = "show";}
   
   //Setting Preference 24 vs 12
   if (preferences.clockDisplay === "12h") {
@@ -177,9 +177,9 @@ clock.ontick = (evt) => {
       minutehand2.image = " ";}
   //ANIMATIONS
   if ( mins % 2 == 0){if (goalreached == "show"){ //if goal is reached give prize 
-                         if (months == 2){star.image = "star/bunny" + numberselected + ".png"}
-                         else if (months == 9){star.image = "star/ghost" + numberselected + ".png"}
-                         else if (months == 11){star.image = "star/santa" + numberselected + ".png"}
+                         if (months == 2){star.image = "star/bunny" + selectnumber + ".png"}
+                         else if (months == 9){star.image = "star/ghost" + selectnumber + ".png"}
+                         else if (months == 11){star.image = "star/santa" + selectnumber + ".png"}
                          else {star.image = "star/"+ selectnumber+ ".png"}
                       //if goal is not reached yellow star
                       }else{star.image = "star/yellow.png";}
@@ -189,9 +189,9 @@ clock.ontick = (evt) => {
                       float();}
     
   }else{       if (goalreached == "show"){ //if goal is reached give prize 
-                         if (months == 2){starobject.image = "star/bunny" + numberselected + ".png"}
-                         else if (months == 9){starobject.image = "star/ghost" + numberselected + ".png"}
-                         else if (months == 11){starobject.image = "star/santa" + numberselected + ".png"}
+                         if (months == 2){starobject.image = "star/bunny" + selectnumber + ".png"}
+                         else if (months == 9){starobject.image = "star/ghost" + selectnumber + ".png"}
+                         else if (months == 11){starobject.image = "star/santa" + selectnumber + ".png"}
                          else {starobject.image = "star/"+ selectnumber+ ".png"}
                       //if goal is not reached yellow star
                       }else{starobject.image = "star/yellow.png";}
@@ -240,9 +240,10 @@ clock.ontick = (evt) => {
 
  /*
    if (hours === 0 && mins === 0) {
-   //updateScene(); Belongs here after Coding is finished
+   updateScene(); Belongs here after Coding is finished
+   also selectnumber
    }
- */
+*/
 /*--- Battery Functions ---*/
   display.addEventListener('change', function () {
     if (this.on) {checkAndUpdateBatteryLevel();} 
