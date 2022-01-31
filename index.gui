@@ -8,10 +8,8 @@
   <!-- clock information set for September Wednesday, DD MM YYYY-->
   
   <text id="myLabel" class="myLabel">
-   <text id="day" x="5" y="77" class= "labelyellow"/>
-   <text id="month" x="92" y="77" class= "labelyellow"/> 
-   <text id="date" x="176" y="77" class= "labelyellow"/> 
-   <text id="year" x="200" y="77" class= "labelyellow"/> 
+  <text id="date" class= "labelyellow"/> 
+ 
    
   
   <!-- battery information -->
