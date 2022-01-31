@@ -52,7 +52,7 @@ let starobject = document.getElementById("starobject");
 let mouthobject = document.getElementById("mouthobject");
 let eyesobject = document.getElementById("eyesobject");
 let cheeksobject = document.getElementById("cheeksobject");
-let object = document.getElementById("object");
+let cuteobject = document.getElementById("cuteobject");
 let star = document.getElementById("star");
 let mouth = document.getElementById("mouth");
 let eyes = document.getElementById("eyes");
@@ -176,6 +176,7 @@ clock.ontick = (evt) => {
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
   //ANIMATIONS
+
   if ( mins % 2 == 0){
                          if (seconds % 2 == 0){mouth.image = "star/notongue.png";}
                          else{mouth.image = "star/littlemouth.png";}     
@@ -183,6 +184,13 @@ clock.ontick = (evt) => {
                          float();    
   }else{             
               //PLAY STAND ANIMATION
+                 if (hours == 9){cuteobject.image = "star/toothbrush.png";}
+                 else if (hours == 12){cuteobject.image = "star/carrot.png";}
+                 else if (hours == 6){cuteobject.image = "star/apple.png";}
+                 else if (hours == 10){cuteobject.image = "star/sleeping.png";}
+                 else if (hours == 11){cuteobject.image = "star/zzz.png";}
+                 else {cuteobject.image = " ";}
+    
                  if ( parseInt(mins/10) == 1 ){
                    if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
                    else{mouthobject.image = "star/tinymouth.png";}}
@@ -366,7 +374,7 @@ else{star.image = "star/yellow.png";}
   eyesobject.image = "";
   mouthobject.image = "";
   cheeksobject.image = ""; 
-  object.image = "";
+  cuteobject.image = "";
   setTimeout(() => {
   demoinstance.animate("enable"); 
    }, 600);
@@ -383,21 +391,10 @@ function stand(){
   eyes.image = " ";
   mouth.image = " ";
   cheeks.image = " ";    
-  
   eyesobject.image = "star/closedeyes.png";
   mouthobject.image;
   cheeksobject.image = "star/cheeks.png";
-   if (util.zeroPad(hours) == 8){object.image ="star/apple.png";}
-                 else if (util.zeroPad(hours) == 9){object.image = "star/toothbrush.png";}
-                 else if (util.zeroPad(hours) == 12){object.image = "star/carrot.png";}
-                 else if (util.zeroPad(hours) == 15){object.image = "star/apple.png";}
-                 else if (util.zeroPad(hours) == 18){object.image = "star/carrot.png";}
-                 else if (util.zeroPad(hours) == 21){object.image = "star/toothbrush.png";}
-                 else if (util.zeroPad(hours) == 22){object.image = "star/sleepingbear.png";}
-                 else if (util.zeroPad(hours) == 23){object.image = "star/zzz.png";}
-                 else if (util.zeroPad(hours) == 5){object.image = "star/zzz.png";}
-                 else if (util.zeroPad(hours) == 6){object.image = "star/sleepingbear.png";}
-                 else {object.image = " ";}
+   
   
 }  
   
