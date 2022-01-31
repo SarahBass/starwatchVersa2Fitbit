@@ -52,7 +52,7 @@ let starobject = document.getElementById("starobject");
 let mouthobject = document.getElementById("mouthobject");
 let eyesobject = document.getElementById("eyesobject");
 let cheeksobject = document.getElementById("cheeksobject");
-let cheeksobject = document.getElementById("object");
+let object = document.getElementById("object");
 let star = document.getElementById("star");
 let mouth = document.getElementById("mouth");
 let eyes = document.getElementById("eyes");
@@ -99,11 +99,10 @@ clock.ontick = (evt) => {
   heartlabel.text = "0";
   checkAndUpdateBatteryLevel();
   //AM PM -Change the image based on 24 hours
-  if (util.zeroPad(hours) <12){
-  ampm.image = "am.png";}
+  if (util.zeroPad(hours) <12){ampm.image = "am.png";}
   if (util.zeroPad(hours) >= 12){ampm.image = "pm.png";}
-  
-  if (userActivity.adjusted.steps < 500){goalreached = "show";}
+  //Get Prize from Steps Goal
+  if (userActivity.adjusted.steps > 3000){goalreached = "show";}
   
   //Setting Preference 24 vs 12
   if (preferences.clockDisplay === "12h") {
@@ -192,7 +191,7 @@ clock.ontick = (evt) => {
                    else{mouthobject.image = "star/tinycirclemouth.png";}}
                                      
                  else if ( parseInt(mins/10) == 3 ){
-                   if (seconds % 2 == 0){mouthobject.image = "star/smallsmile.png";}
+                   if (seconds % 2 == 0){mouthobject.image = "star/tinycirclemouth.png";}
                    else{mouthobject.image = "star/mouth.png";}}  
                  
                  else if (parseInt(mins/10) == 4 ){ 
@@ -233,8 +232,6 @@ clock.ontick = (evt) => {
 /*--- Battery Functions ---*/
   display.addEventListener('change', function () {
     if (this.on) {checkAndUpdateBatteryLevel();} 
-
-  
 });
 /*----------------------------END OF CLOCK-----------------------------------*/
   
@@ -405,6 +402,5 @@ function stand(){
 }  
   
 
-
-
 }
+
