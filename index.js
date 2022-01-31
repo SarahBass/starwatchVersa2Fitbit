@@ -93,19 +93,21 @@ clock.ontick = (evt) => {
   stepsLabel.text = userActivity.adjusted.steps;
   firelabel.text = userActivity.adjusted.calories;
   boltlabel.text = goals.activeZoneMinutes.total;
-  heartlabel.text = "0";
+  heartlabel.text = "0"; 
   checkAndUpdateBatteryLevel();
   
-  if (HeartRateSensor) {
-   console.log("This device has a HeartRateSensor!");
+/*
+if (HeartRateSensor) {
    const hrm = new HeartRateSensor();
    hrm.addEventListener("reading", () => {
-     console.log(`Current heart rate: ${hrm.heartRate}`);
+     heartlabel.text =" " + hrm.heartRate;
    });
    hrm.start();
 } else {
    console.log("This device does NOT have a HeartRateSensor!");
 }
+*/
+   
   
   //AM PM -Change the image based on 24 hours
   if (util.zeroPad(hours) <12){ampm.image = "am.png";}
