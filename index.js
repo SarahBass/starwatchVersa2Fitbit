@@ -35,7 +35,9 @@ import { vibration } from "haptics";
 let daytext = "day";
 let monthtext = "month";
 let goalreached = "NONE";
-let selectnumber = getRandomInt(12);
+var selectnumber = Math.floor(Math.random() * 12);
+var selectlessnumber = Math.floor(Math.random() * 4);
+
 
 /*--- Import Information from index.gui ---*/
 
@@ -88,9 +90,6 @@ clock.ontick = (evt) => {
   let dates = today.getDate();
   let years = today.getFullYear();
 
-  
-   
-  
  /*--- Update Stats for Screen ---*/
   
   updateScene();
@@ -137,7 +136,8 @@ clock.ontick = (evt) => {
   else if (hours == 6){hourhand.image = "hoursfile/hour6.png";}
   else if (hours == 7){hourhand.image = "hoursfile/hour7.png";}
   else if (hours == 8){hourhand.image = "hoursfile/hour8.png";}
-  else if (hours == 9){hourhand.image = "hoursfile/hour9.png";}
+  else if (hours == 9){hourhand.image = "hoursfile/hour9.png";
+                        hourhand.class = "hour11";  }
   else if (hours == 10){hourhand.image = "hoursfile/hour10.png";}
   else if (hours == 11){hourhand.image = "hoursfile/hour11.png";
                         hourhand.class = "hour11";}
@@ -169,32 +169,20 @@ clock.ontick = (evt) => {
   else if (parseInt(mins/10) == 2 ){ minutehand.image = "minutesfile/2.png";
                                      minutehand.class = "minute";            }                    
   else if ( parseInt(mins/10) == 3 ){minutehand.image = "minutesfile/3.png";}
-  else if (parseInt(mins/10) == 4 ){ minutehand.image = "minutesfile/4.png";}
+  else if (parseInt(mins/10) == 4 ){ minutehand.image = "minutesfile/4.png";
+                                     minutehand.class = "minute";           }
   else if (parseInt(mins/10) == 5 ){ minutehand.image = "minutesfile/5.png";}
   else if (parseInt(mins/10) == 6 ){ minutehand.image = "minutesfile/6.png";}
   else if (parseInt(mins/10) == 0 ){ minutehand.image = "minutesfile/0.png";}
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
   //ANIMATIONS
-  if ( mins % 2 == 0){if (goalreached == "show"){ //if goal is reached give prize 
-                         if (months == 2){star.image = "star/bunny" + selectnumber + ".png"}
-                         else if (months == 9){star.image = "star/ghost" + selectnumber + ".png"}
-                         else if (months == 11){star.image = "star/santa" + selectnumber + ".png"}
-                         else {star.image = "star/"+ selectnumber+ ".png"}
-                      //if goal is not reached yellow star
-                      }else{star.image = "star/yellow.png";}
-                      //PLAY FLOAT ANIMATION
-                      if (seconds % 2 == 0){mouth.image = "star/notongue.png";}
-                      else{mouth.image = "star/littlemouth.png";
-                      float();}
-    
-  }else{       if (goalreached == "show"){ //if goal is reached give prize 
-                         if (months == 2){starobject.image = "star/bunny" + selectnumber + ".png"}
-                         else if (months == 9){starobject.image = "star/ghost" + selectnumber + ".png"}
-                         else if (months == 11){starobject.image = "star/santa" + selectnumber + ".png"}
-                         else {starobject.image = "star/"+ selectnumber+ ".png"}
-                      //if goal is not reached yellow star
-                      }else{starobject.image = "star/yellow.png";}
+  if ( mins % 2 == 0){
+                         if (seconds % 2 == 0){mouth.image = "star/notongue.png";}
+                         else{mouth.image = "star/littlemouth.png";}     
+                         //PLAY FLOAT ANIMATION
+                         float();    
+  }else{             
               //PLAY STAND ANIMATION
                  if ( parseInt(mins/10) == 1 ){
                    if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
@@ -223,7 +211,7 @@ clock.ontick = (evt) => {
                  else if (parseInt(mins/10) == 0 ){ 
                    if (seconds % 2 == 0){mouthobject.image = "star/tinymouth.png";}
                    else{mouthobject.image = "star/tinycirclemouth.png";}}
-                 
+                
                  if (util.zeroPad(hours) == 8){"star/apple.png"}
                  else if (util.zeroPad(hours) == 9){object.image = "star/toothbrush.png";}
                  else if (util.zeroPad(hours) == 12){object.image = "star/carrot.png";}
@@ -235,15 +223,13 @@ clock.ontick = (evt) => {
                  else if (util.zeroPad(hours) == 5){object.image = "star/zzz.png";}
                  else if (util.zeroPad(hours) == 6){object.image = "star/sleepingbear.png";}
                  else {object.image = " ";}
-              stand();
+              
       }
 
- /*
-   if (hours === 0 && mins === 0) {
-   updateScene(); Belongs here after Coding is finished
-   also selectnumber
-   }
-*/
+
+   if (util.zeroPad(hours) === 0 && mins === 0) {selectnumber = Math.floor(Math.random() * 12); }
+   
+
 /*--- Battery Functions ---*/
   display.addEventListener('change', function () {
     if (this.on) {checkAndUpdateBatteryLevel();} 
@@ -293,8 +279,7 @@ function checkAndUpdateBatteryLevel() {
   else if (days == 3){daytext = "Wednesday,";}
   else if (days == 4){daytext = "Thursday,";}
   else if (days == 5){daytext = "Friday,";}
-  else if (days == 6){if (months < 8){daytext = saturday[months]}
-                      else{daytext = "    Saturday,";}}
+  else if (days == 6){daytext = "Saturday,";}
   else {daytext = "DAY";}
  }
 
@@ -379,7 +364,15 @@ function checkAndUpdateBatteryLevel() {
 
 //Animation Functions   
 function float (){
-  star.image;
+//if goal is reached give prize                         
+if (goalreached == "show"){ 
+                           if (months == 2){star.image = "star/bunny" + selectlessnumber + ".png"}
+                           else if (months == 9){star.image = "star/ghost" + selectlessnumber + ".png"}
+                           else if (months == 11){star.image = "star/santa" + selectlessnumber + ".png"}
+                           else {star.image = "star/"+ selectnumber+ ".png"}}
+//if goal is not reached yellow star
+else{star.image = "star/yellow.png";}
+  
   eyes.image = "star/eyes.png";
   mouth.image;
   cheeks.image = "star/cheeks.png";      
@@ -394,10 +387,16 @@ function float (){
 }  
 
 function stand(){
-  star.image = "";
-  eyes.image = "";
-  mouth.image = "";
-  cheeks.image = "";    
+  if (goalreached == "show"){ 
+                             if (months == 2){starobject.image = "star/bunny" + selectlessnumber + ".png"}
+                             else if (months == 9){starobject.image = "star/ghost" + selectlessnumber + ".png"}
+                             else if (months == 11){starobject.image = "star/santa" + selectlessnumber + ".png"}
+                             else {starobject.image = "star/"+ selectnumber+ ".png"}
+//if goal is not reached yellow star
+}else{starobject.image = "star/yellow.png";}
+  eyes.image = " ";
+  mouth.image = " ";
+  cheeks.image = " ";    
   starobject.image;
   eyesobject.image = "star/closedeyes.png";
   mouthobject.image;
@@ -405,9 +404,7 @@ function stand(){
   object.image;
 }  
   
- function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+
+
+
 }
-} 
-
-
