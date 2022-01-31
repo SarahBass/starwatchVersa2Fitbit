@@ -80,7 +80,9 @@
   font-family: System-Bold;
   text-length: 32;
   opacity: 0.7;
-
+  text-anchor: end;
+  x: 80%;
+  y: 25%;
 
 }
 
