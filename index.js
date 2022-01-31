@@ -27,10 +27,8 @@ import * as util from "../common/utils";
 import { battery } from 'power';
 import { display } from "display";
 import { today as userActivity } from "user-activity";
-import { Accelerometer } from "accelerometer";
-import { vibration } from "haptics";
-//import { me as appbit } from "appbit";
-
+import {goals, today} from "user-activity";
+import { HeartRateSensor } from "heart-rate";
 /*--- Create Local Variables for Information Storage ---*/
 let daytext = "day";
 let monthtext = "month";
@@ -94,14 +92,27 @@ clock.ontick = (evt) => {
   updateScene();
   stepsLabel.text = userActivity.adjusted.steps;
   firelabel.text = userActivity.adjusted.calories;
-  boltlabel.text = "0";
+  boltlabel.text = goals.activeZoneMinutes.total;
   heartlabel.text = "0";
   checkAndUpdateBatteryLevel();
+  
+  if (HeartRateSensor) {
+   console.log("This device has a HeartRateSensor!");
+   const hrm = new HeartRateSensor();
+   hrm.addEventListener("reading", () => {
+     console.log(`Current heart rate: ${hrm.heartRate}`);
+   });
+   hrm.start();
+} else {
+   console.log("This device does NOT have a HeartRateSensor!");
+}
+  
   //AM PM -Change the image based on 24 hours
   if (util.zeroPad(hours) <12){ampm.image = "am.png";}
   if (util.zeroPad(hours) >= 12){ampm.image = "pm.png";}
   //Get Prize from Steps Goal
-  if (userActivity.adjusted.steps > 300){goalreached = "show";}
+  
+  if (userActivity.adjusted.steps > 3000){goalreached = "show";}
   
   //Setting Preference 24 vs 12
   if (preferences.clockDisplay === "12h") {
