@@ -203,7 +203,7 @@ clock.ontick = (evt) => {
                       //PLAY FLOAT ANIMATION
                       if (seconds % 2 == 0){mouth.image = "star/notongue.png";}
                       else{mouth.image = "star/littlemouth.png";
-                      float();
+                      float();}
     
   }else{       if (goalreached == 2){ //if goal is reached give prize 
                          if (months == 2){starobject.image = "star/bunny" + numberselected + ".png"}
