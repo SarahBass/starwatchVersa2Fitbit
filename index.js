@@ -34,7 +34,7 @@ import { vibration } from "haptics";
 /*--- Create Local Variables for Information Storage ---*/
 let daytext = "day";
 let monthtext = "month";
-let goalreached = 0;
+let goalreached = "NONE";
 let selected = 0;
 
 /*--- Import Information from index.gui ---*/
@@ -50,6 +50,7 @@ let starobject = document.getElementById("starobject");
 let mouthobject = document.getElementById("mouthobject");
 let eyesobject = document.getElementById("eyesobject");
 let cheeksobject = document.getElementById("cheeksobject");
+let cheeksobject = document.getElementById("object");
 let star = document.getElementById("star");
 let mouth = document.getElementById("mouth");
 let eyes = document.getElementById("eyes");
@@ -103,7 +104,7 @@ clock.ontick = (evt) => {
   ampm.image = "am.png";}
   if (util.zeroPad(hours) >= 12){ampm.image = "pm.png";}
   
-  if (userActivity.adjusted.steps == 400){goalreached++;}
+  if (userActivity.adjusted.steps == 500){goalreached = "show";}
   
   //Setting Preference 24 vs 12
   if (preferences.clockDisplay === "12h") {
@@ -117,22 +118,7 @@ clock.ontick = (evt) => {
   /*--- Calling util in common to export/import time ---*/
   let mins = util.zeroPad(today.getMinutes());
   let seconds = today.getSeconds();
-  /*--- PLAY ANIMATION IF GOAL REACHED ; ELSE SHOW CLOCK---*/  
-    if (goalreached == 1){
-      if (months == 2){}
-        else if (months == 9){selectnumber = getRandomInt(4);}
-        else if (months == 11){selectnumber = getRandomInt(3);}
-        else{ selectnumber = getRandomInt(13);}     
-      vibration.start("ping");
-      background.image = "mysterystar.png";
-      if (seconds % 2 == 0){starobject.image = "star/yellow.png";}
-         else if (seconds % 3 == 0){starobject.image = "star/3.png";}
-         else if (seconds % 5 == 0){starobject.image = "star/6.png";}
-         else if (seconds % 7 == 0){starobject.image = "star/5.png";}
-         else if (seconds % 9 == 0){starobject.image = "star/4.png";}
-         else if (seconds % 11 == 0){goalreached = 2;}
-         else{starobject.image = "star/8.png";}
-  }else{
+  
   /*----------------------------SHOW CLOCK-----------------------------------*/
   /*--- OPTION 1: TIME TEXT ---*/
   //This is how to set a clock with text 
@@ -186,14 +172,11 @@ clock.ontick = (evt) => {
   else if (parseInt(mins/10) == 4 ){ minutehand.image = "minutesfile/4.png";}
   else if (parseInt(mins/10) == 5 ){ minutehand.image = "minutesfile/5.png";}
   else if (parseInt(mins/10) == 6 ){ minutehand.image = "minutesfile/6.png";}
-  else if (parseInt(mins/10) == 7 ){ minutehand.image = "minutesfile/7.png";}
-  else if (parseInt(mins/10) == 8 ){ minutehand.image = "minutesfile/8.png";}
-  else if (parseInt(mins/10) == 9 ){ minutehand.image = "minutesfile/9.png";}
   else if (parseInt(mins/10) == 0 ){ minutehand.image = "minutesfile/0.png";}
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
   //ANIMATIONS
-  if ( mins % 2 == 0){if (goalreached == 2){ //if goal is reached give prize 
+  if ( mins % 2 == 0){if (goalreached == "show"){ //if goal is reached give prize 
                          if (months == 2){star.image = "star/bunny" + numberselected + ".png"}
                          else if (months == 9){star.image = "star/ghost" + numberselected + ".png"}
                          else if (months == 11){star.image = "star/santa" + numberselected + ".png"}
@@ -205,7 +188,7 @@ clock.ontick = (evt) => {
                       else{mouth.image = "star/littlemouth.png";
                       float();}
     
-  }else{       if (goalreached == 2){ //if goal is reached give prize 
+  }else{       if (goalreached == "show"){ //if goal is reached give prize 
                          if (months == 2){starobject.image = "star/bunny" + numberselected + ".png"}
                          else if (months == 9){starobject.image = "star/ghost" + numberselected + ".png"}
                          else if (months == 11){starobject.image = "star/santa" + numberselected + ".png"}
@@ -213,11 +196,48 @@ clock.ontick = (evt) => {
                       //if goal is not reached yellow star
                       }else{starobject.image = "star/yellow.png";}
               //PLAY STAND ANIMATION
-              if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
-              else{mouthobject.image = "star/tinymouth.png";}
+                 if ( parseInt(mins/10) == 1 ){
+                   if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
+                   else{mouthobject.image = "star/tinymouth.png";}}
+                 else if (parseInt(mins/10) == 2 ){
+                   if (seconds % 2 == 0){mouthobject.image = "star/circlemouth.png";}
+                   else{mouthobject.image = "star/tinycirclemouth.png";}}
+                 }                    
+                 else if ( parseInt(mins/10) == 3 ){
+                   if (seconds % 2 == 0){mouthobject.image = "star/smallsmile.png";}
+                   else{mouthobject.image = "star/mouth.png";}}  
+                 }
+                 else if (parseInt(mins/10) == 4 ){ 
+                   if (seconds % 2 == 0){mouthobject.image = "star/littleovalmouth.png";}
+                   else{mouthobject.image = "star/tinymouth.png";}}
+                 }
+                 else if (parseInt(mins/10) == 5 ){
+                   if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
+                   else{mouthobject.image = "star/tinymouth.png";}}
+                   
+                 }
+                 else if (parseInt(mins/10) == 6 ){ 
+                   if (seconds % 2 == 0){mouthobject.image = "star/notongue.png";}
+                   else{mouthobject.image = "star/littlemouth.png";}}
+                 }
+                 else if (parseInt(mins/10) == 0 ){ 
+                   if (seconds % 2 == 0){mouthobject.image = "star/tinymouth.png";}
+                   else{mouthobject.image = "star/tinycirclemouth.png";}}
+                 
+                 if (util.zeroPad(hours) == 8){"star/apple.png"}
+                 else if (util.zeroPad(hours) == 9){object.image = "star/toothbrush.png";}
+                 else if (util.zeroPad(hours) == 12){object.image = "star/carrot.png";}
+                 else if (util.zeroPad(hours) == 15){object.image = "star/apple.png";}
+                 else if (util.zeroPad(hours) == 18){object.image = "star/carrot.png";}
+                 else if (util.zeroPad(hours) == 21){object.image = "star/toothbrush.png";}
+                 else if (util.zeroPad(hours) == 22){object.image = "star/sleepingbear.png";}
+                 else if (util.zeroPad(hours) == 23){object.image = "star/zzz.png";}
+                 else if (util.zeroPad(hours) == 5){object.image = "star/zzz.png";}
+                 else if (util.zeroPad(hours) == 6){object.image = "star/sleepingbear.png";}
+                 else {object.image = " ";}
               stand();
       }
-}
+
  /*
    if (hours === 0 && mins === 0) {
    //updateScene(); Belongs here after Coding is finished
@@ -365,7 +385,8 @@ function float (){
   starobject.image = "";
   eyesobject.image = "";
   mouthobject.image = "";
-  cheeksobject.image = "";  
+  cheeksobject.image = ""; 
+  object.image = "";
   setTimeout(() => {
   demoinstance.animate("enable"); 
    }, 600);
@@ -379,7 +400,8 @@ function stand(){
   starobject.image;
   eyesobject.image = "star/closedeyes.png";
   mouthobject.image;
-  cheeksobject.image = "star/cheeks.png";  
+  cheeksobject.image = "star/cheeks.png";
+  object.image;
 }  
   
  function getRandomInt(max) {
