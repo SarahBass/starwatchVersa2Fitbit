@@ -1,6 +1,7 @@
 # starwatchVersa2Fitbit
 Versa2 SDK 4.3 
 
+Stats heavy watch, filled with cute interactions, daily changing pictures, and fun surprises.
 
 Contents: | Description:
 --------- | ------------
@@ -9,12 +10,13 @@ index.gui | initializes JS library of resources
 widgets. gui | imports to SDK library
 utils.js | adds 0 to digit
 styles.css | adds formatting
+Images    | Image Files and Folders not included on github
 
-Image Files and Folders not included on github. 
 
-Stats heavy watch, filled with cute interactions, daily changing pictures, and fun surprises.
 
-DESCRIPTION:
+
+Description in Clockface Fitbit Gallery APP STORE:
+
 A cute , animated star on your watch changes its background every day (365 days) of the year! 
 
 Have fun with your Fitbit as this little star swirls around on your watch, and interacts with you all day.  The star brushes its teeth, eats healthy food, works out, and goes to bed with a little teddy bear based on preset times. The star also plays an instrument, plays soccer, sun bathes, reads, does math, calls friends, watches movies, and more. His daily activities are an example of healthy daily routines and change upon the hour. He may fall asleep if you are not in movement, but will wake right back up and start floating again. 
