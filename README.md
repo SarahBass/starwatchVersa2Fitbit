@@ -14,9 +14,12 @@ Images    | Image Files and Folders not included on github
 
 
 
-
-Description in Clockface Fitbit Gallery APP STORE:
-
+ FITBIT GALLERY APP STORE:
+ 
+ Developer: Sarah Bass
+ 
+ Price : FREE
+ 
 A cute , animated star on your watch changes its background every day (365 days) of the year! 
 
 Have fun with your Fitbit as this little star swirls around on your watch, and interacts with you all day.  The star brushes its teeth, eats healthy food, works out, and goes to bed with a little teddy bear based on preset times. The star also plays an instrument, plays soccer, sun bathes, reads, does math, calls friends, watches movies, and more. His daily activities are an example of healthy daily routines and change upon the hour. He may fall asleep if you are not in movement, but will wake right back up and start floating again. 
