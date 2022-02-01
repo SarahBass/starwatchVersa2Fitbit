@@ -1,6 +1,17 @@
 # starwatchVersa2Fitbit
 Versa2 SDK 4.3 
 
+
+Contents: | Description:
+--------- | ------------
+index.js  | Main Javascript Code for Watch 
+index.gui | initializes JS library of resources
+widgets. gui | imports to SDK library
+utils.js | adds 0 to digit
+styles.css | adds formatting
+
+Image Files and Folders not included on github. 
+
 Stats heavy watch, filled with cute interactions, daily changing pictures, and fun surprises.
 
 DESCRIPTION:
