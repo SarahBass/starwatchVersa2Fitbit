@@ -98,11 +98,58 @@ clock.ontick = (evt) => {
   checkAndUpdateBatteryLevel();
    
   //AM PM -Change the image based on 24 hours
-  if (util.zeroPad(hours) <12){ampm.image = "am.png";}
+  if (util.zeroPad(hours) <12){ampm.image = "am.png";
+                              if ((util.zeroPad(hours) > 1) && (util.zeroPad(hours) < 7)) {
+                                   cuteobject.image = "star/sleeping.png";
+                                   cute.image = "star/sleeping.png";}
+                              else if (util.zeroPad(hours) == 7){
+                                   cuteobject.image = "star/apple.png";
+                                   cute.image = "star/apple.png";}
+                              else if (util.zeroPad(hours) == 8){
+                                   cuteobject.image = "star/toothbrush.png";
+                                   cute.image = "star/toothbrush.png";}
+                              else if (util.zeroPad(hours) == 9){ 
+                                   cuteobject.image = "star/physics.png"; 
+                                   cute.image = "star/physics.png";}
+                              else if (util.zeroPad(hours) == 10){ 
+                                   cuteobject.image = "star/read.png"; 
+                                   cute.image = "star/read.png";}
+                              else {
+                                    cuteobject.image = " ";
+                                    cute.image = " ";}
+                              
+                              
+                              }
   if (util.zeroPad(hours) >= 12){ampm.image = "pm.png";
-                                 if (util.zeroPad(hours) == 13){
-                                cuteobject.image = "star/suntan.png";
-                                cute.image = "star/suntan.png";}}                            
+                                 if (util.zeroPad(hours) == 15){
+                                   cuteobject.image = "star/suntan.png";
+                                   cute.image = "star/suntan.png";}
+                                 else if (util.zeroPad(hours) == 16){
+                                   cuteobject.image = "star/soccer.png";
+                                   cute.image = "star/soccer.png";}
+                                 else if (util.zeroPad(hours) == 17){  
+                                   cuteobject.image = "star/workout.png";
+                                   cute.image = "star/workout.png";}
+                                 else if (util.zeroPad(hours) == 18){  
+                                   cuteobject.image = "star/carrot.png";
+                                   cute.image = "star/carrot.png";}
+                                 else if (util.zeroPad(hours) == 19){  
+                                    cuteobject.image = "star/ukelele.png";
+                                    cute.image = "star/ukelele.png";} 
+                                 else if (util.zeroPad(hours) == 20){  
+                                    cuteobject.image = "star/watchmovie.png";
+                                    cute.image = "star/watchmovie.png";}
+                                 else if (util.zeroPad(hours) == 21){ 
+                                    cuteobject.image = "star/toothbrush.png";
+                                    cute.image = "star/toothbrush.png";}
+                                 else if ((util.zeroPad(hours) == 22) ||
+                                          (util.zeroPad(hours) == 23)){
+                                    cuteobject.image = "star/zzz.png";
+                                    cute.image = "star/zzz.png";}
+                                 else {
+                                    cuteobject.image = " ";
+                                    cute.image = " ";}
+                                 }                            
   
   
   //Get Prize from Steps Goal
@@ -401,8 +448,8 @@ function stand(){
                                            cute.image = "star/apple.png";}
                 else if (hours == 9){cuteobject.image = "star/toothbrush.png";//BOTH 9
                                            cute.image = "star/toothbrush.png";}//BOTH 9
-                else if (hours == 10){cuteobject.image = "star/physics.png"; //AM
-                                           cute.image = "star/physics.png";}//AM
+                else if (hours == 10){cuteobject.image = "star/physics.png"; 
+                                           cute.image = "star/physics.png";}
                 else if (hours == 11){cuteobject.image = "star/read.png";//AM
                                            cute.image = "star/read.png";} //AM
                 else {cuteobject.image = " ";//AM
@@ -410,25 +457,7 @@ function stand(){
                 
    }     
   
-   if (util.zeroPad(hours) >= 12){
-                 if (hours == 4){cuteobject.image = "star/soccer.png"//PM
-                                            cute.image = "star/soccer.png";}//PM
-                 else if (hours == 5){cuteobject.image = "star/workout.png"//PM
-                                            cute.image = "star/workout.png";}//PM
-                 else if (hours == 6){cuteobject.image = "star/carrot.png";
-                                      cute.image = "star/carrot.png";}
-                 else if (hours ==7){cuteobject.image = "star/ukelele.png"//PM
-                                            cute.image = "star/ukelele.png";}//PM
-                 else if (hours == 8){cuteobject.image = "star/watchmovie.png"//PM
-                                            cute.image = "star/watchmovie.png";}//PM
-                 else if (hours == 9){cuteobject.image = "star/toothbrush.png";//BOTH 9
-                                            cute.image = "star/toothbrush.png";}//BOTH 9
-                 else if (hours == 10){cuteobject.image = "star/zzz.png";//PM
-                                            cute.image = "star/zzz.png";}//PM
-                 else if (hours == 11){cuteobject.image = "star/sleeping.png";//PM
-                                             cute.image = "star/sleeping.png";}//PM
-                 else{cuteobject.image = " ";//AM
-                                             cute.image = " ";} //AM
+
   
   */
   
