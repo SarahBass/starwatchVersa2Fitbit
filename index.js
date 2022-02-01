@@ -66,8 +66,6 @@ clock.granularity = "seconds";
 // Get a handle on the <text> elements 
 const myLabel = document.getElementById("myLabel");
 const batteryLabel = document.getElementById("batteryLabel");
-const greenbatteryLabel = document.getElementById("greenbatteryLabel");
-const redbatteryLabel = document.getElementById("redbatteryLabel");
 const stepsLabel = document.getElementById("stepsLabel");
 const calendarLabel = document.getElementById("calendarLabel");
 const firelabel = document.getElementById("firelabel");
@@ -271,24 +269,17 @@ clock.ontick = (evt) => {
 /*----------------------------END OF ON CLICK-----------------------------------*/
   
 /*----------------------------START OF FUNCTIONS--------------------------------*/
-battery.onchange = (charger, evt) => {
-    greenBatteryLevel();
-}
 
-
-function greenBatteryLevel() {
-    greenbatteryLabel.text = `${battery.chargeLevel}%`;
-}
+ /*--- Change Battery RED , GREEN & CHARGE ---*/  
+battery.onchange = (charger, evt) => {batteryLabel.class = "labelgreen";}
 
 function checkAndUpdateBatteryLevel() {
-  if (battery.chargeLevel > 30){
-    batteryLabel.text = `${battery.chargeLevel}%`;}
-  else {redbatteryLabel.text = `${battery.chargeLevel}%`;}
+  batteryLabel.text = `${battery.chargeLevel}%`;
+  if (battery.chargeLevel > 30){ batteryLabel.class = "labelgreen";}
+  else {batteryLabel.class = "labelred";}
 }
   
-
-  
-  /*--- Change Date and Background Functions ---*/
+/*--- Change Date and Background Functions ---*/
   function updateScene() {
    changeBackground();
    date.text = " " + daytext + " " + monthtext + " " + dates + " " + years + " ";  
