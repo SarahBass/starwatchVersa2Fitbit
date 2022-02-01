@@ -14,7 +14,7 @@ Images    | Image Files and Folders not included on github
 
 
 
- FITBIT GALLERY APP STORE:
+ FITBIT GALLERY APP STORE: [https://gallery.fitbit.com/details/04986c80-1832-4139-921f-0d0b1e8347a9]
  
  Developer: Sarah Bass
  
