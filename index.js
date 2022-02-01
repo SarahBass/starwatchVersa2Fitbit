@@ -15,6 +15,9 @@
  -jpegs load slower than PNG in Fitbit Studio-
   USE PNG for numbers and animations for
  faster upload, and jpeg for backgrounds
+ 
+https://developer.mozilla.org/en-US/docs
+/Web/JavaScript/Reference/Global_Objects/Date
  ---------------------------------------------
 */
 
@@ -61,7 +64,7 @@ let cute = document.getElementById("cute");
 clock.granularity = "seconds";
 
 // Get a handle on the <text> elements 
-const myLabel = document.getElementById("myLabel"); // Clock
+const myLabel = document.getElementById("myLabel");
 const batteryLabel = document.getElementById("batteryLabel");
 const greenbatteryLabel = document.getElementById("greenbatteryLabel");
 const redbatteryLabel = document.getElementById("redbatteryLabel");
@@ -71,22 +74,20 @@ const firelabel = document.getElementById("firelabel");
 const boltlabel = document.getElementById("boltlabel");
 const heartlabel = document.getElementById("heartlabel");
 
-
-
  /*--- Animation Groups Imported from Index.gui---*/
 var demoinstance = document.getElementById("demoinstance");
 
 /*--- CLOCK START ---*/
 clock.ontick = (evt) => {
-//Update the <text> element every tick with the current time
-//This is using .util to export and import accurate time
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+
   let today = evt.date;
   let hours = today.getHours();
   let months = today.getMonth();
   let days = today.getDay();
   let dates = today.getDate();
   let years = today.getFullYear();
+  let mins = util.zeroPad(today.getMinutes());
+  let seconds = today.getSeconds();
 
  /*--- Update Stats for Screen ---*/
   updateScene();
@@ -95,47 +96,23 @@ clock.ontick = (evt) => {
   boltlabel.text = goals.activeZoneMinutes.total;
   heartlabel.text = "0"; 
   checkAndUpdateBatteryLevel();
-  
-/*
-if (HeartRateSensor) {
-   const hrm = new HeartRateSensor();
-   hrm.addEventListener("reading", () => {
-     heartlabel.text =" " + hrm.heartRate;
-   });
-   hrm.start();
-} else {
-   console.log("This device does NOT have a HeartRateSensor!");
-}
-*/
    
-  
   //AM PM -Change the image based on 24 hours
   if (util.zeroPad(hours) <12){ampm.image = "am.png";}
-  if (util.zeroPad(hours) >= 12){ampm.image = "pm.png";}
-  //Get Prize from Steps Goal
+  if (util.zeroPad(hours) >= 12){ampm.image = "pm.png";
+                                 if (util.zeroPad(hours) == 13){
+                                cuteobject.image = "star/suntan.png";
+                                cute.image = "star/suntan.png";}}                            
   
+  
+  //Get Prize from Steps Goal
   if (userActivity.adjusted.steps > 3000){goalreached = "show";}
   
-  //Setting Preference 24 vs 12
+   /*--- OPTION 2: TIME IMAGES FOR 12 HOUR CLOCK---*/
+  //set class of each # IMAGE individually if needed for formatting
   if (preferences.clockDisplay === "12h") {
-    // 12h format
+
     hours = hours % 12 || 12;
-  } else {
-    // 24h format
-    hours = util.zeroPad(hours);
-  }
-  
-  /*--- Calling util in common to export/import time ---*/
-  let mins = util.zeroPad(today.getMinutes());
-  let seconds = today.getSeconds();
-  
-  /*----------------------------SHOW CLOCK-----------------------------------*/
-  /*--- OPTION 1: TIME TEXT ---*/
-  //This is how to set a clock with text 
-  myLabel.text = `${hours}:${mins}`; 
-  
-   /*--- OPTION 2: TIME IMAGES ---*/
-  //set class of each number individually if needed for formatting
   
   if (hours == 1){hourhand.image = "hoursfile/hour1.png";
                   hourhand.class = "hour1";                   }
@@ -175,44 +152,37 @@ if (HeartRateSensor) {
   
   //Minute hand /10 will return tens digit, but ints don't exist in Javascript
   //Use the parseInt function to turn quotient into an integer
-    if ( parseInt(mins/10) == 1 ){   minutehand.image = "minutesfile/1.png";
-                                     minutehand.class = "minute1";          }
-  else if (parseInt(mins/10) == 2 ){ minutehand.image = "minutesfile/2.png";
-                                     minutehand.class = "minute";            }                    
+       if ( parseInt(mins/10) == 1 ){minutehand.image = "minutesfile/1.png";}         
+  else if (parseInt(mins/10) == 2 ){minutehand.image = "minutesfile/2.png";}
   else if ( parseInt(mins/10) == 3 ){minutehand.image = "minutesfile/3.png";}
-  else if (parseInt(mins/10) == 4 ){ minutehand.image = "minutesfile/4.png";
-                                     minutehand.class = "minute";           }
+  else if (parseInt(mins/10) == 4 ){ minutehand.image = "minutesfile/4.png";}                                 
   else if (parseInt(mins/10) == 5 ){ minutehand.image = "minutesfile/5.png";}
   else if (parseInt(mins/10) == 6 ){ minutehand.image = "minutesfile/6.png";}
   else if (parseInt(mins/10) == 0 ){ minutehand.image = "minutesfile/0.png";}
   else{minutehand.image = "minutesfile/00.png";
       minutehand2.image = " ";}
+  } 
+    
+    /*--- OPTION 2: TIME TEXT FOR 24 HOUR CLOCK ---*/
+    //This is how to set a clock with text
+    //Invisible until 24 hour mode selected
+    else { 
+    hours = util.zeroPad(hours);
+    myLabel.text = `${hours}:${mins}`; 
+    mylabel.class = "showLabel";
+  }
   
-  if (hours == 9){cuteobject.image = "star/toothbrush.png";
-                          cute.image = "star/toothbrush.png";}
-                 else if (hours == 12){cuteobject.image = "star/carrot.png";
-                                           cute.image = "star/carrot.png";}
-                 else if (hours == 6){cuteobject.image = "star/apple.png";
-                                           cute.image = "star/apple.png";}
-                 else if (hours == 10){cuteobject.image = "star/zzz.png";
-                                            cute.image = "star/zzz.png";}
-                 else if (hours == 11){cuteobject.image = "star/sleeping.png";
-                                                  cute.image = "star/sleeping.png";}
-                 else {cuteobject.image = " ";
-                       cute.image = " ";}
-  
+  /*----------------------------SHOW CLOCK END----------------------------------*/
   //ANIMATIONS
 
+  //PLAY FLOAT ANIMATION
   if ( mins % 2 == 0){
                          if (seconds % 2 == 0){mouth.image = "star/notongue.png";}
                          else{mouth.image = "star/littlemouth.png";}     
-                         //PLAY FLOAT ANIMATION
-                         float();    
-  }else{             
-              //PLAY STAND ANIMATION
-                 
-    
-                 if ( parseInt(mins/10) == 1 ){
+                         float();
+  //PLAY STAND ANIMATION - MOUTH CHANGES EVERY 10 MINUTES  
+  }else{            
+                   if ( parseInt(mins/10) == 1 ){
                    if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
                    else{mouthobject.image = "star/tinymouth.png";}}
                  else if (parseInt(mins/10) == 2 ){
@@ -230,8 +200,7 @@ if (HeartRateSensor) {
                  else if (parseInt(mins/10) == 5 ){
                    if (seconds % 2 == 0){mouthobject.image = "star/littlemouth.png";}
                    else{mouthobject.image = "star/tinymouth.png";}}
-                   
-                 
+
                  else if (parseInt(mins/10) == 6 ){ 
                    if (seconds % 2 == 0){mouthobject.image = "star/notongue.png";}
                    else{mouthobject.image = "star/littlemouth.png";}}
@@ -243,17 +212,18 @@ if (HeartRateSensor) {
        stand();
       }
 
-
+   //RESET THE RANDOM NUMBER EVERY 24 HOURS
    if (hours === 0 && mins === 0) {selectnumber = Math.floor(Math.random() * 12);
                                    selectlessnumber = Math.floor(Math.random() * 5);}
-   
-
-/*--- Battery Functions ---*/
-  display.addEventListener('change', function () {
-    if (this.on) {checkAndUpdateBatteryLevel();} 
-});
-/*----------------------------END OF CLOCK-----------------------------------*/
   
+
+  /*--- Battery Functions ---*/
+  display.addEventListener('change', function () { if (this.on) {checkAndUpdateBatteryLevel();}
+                                                  
+});
+/*----------------------------END OF ON CLICK-----------------------------------*/
+  
+/*----------------------------START OF FUNCTIONS--------------------------------*/
 battery.onchange = (charger, evt) => {
     greenBatteryLevel();
 }
@@ -422,7 +392,56 @@ function stand(){
   cuteobject.image; 
   
 }  
-  
-
 }
+/*----------------------------END OF FUNCTIONS--------------------------------*/
+/*-------------------------------END OF CODE----------------------------------*/
+  /*
+  if (util.zeroPad(hours) <12){
+                if (hours == 8){cuteobject.image = "star/apple.png";
+                                           cute.image = "star/apple.png";}
+                else if (hours == 9){cuteobject.image = "star/toothbrush.png";//BOTH 9
+                                           cute.image = "star/toothbrush.png";}//BOTH 9
+                else if (hours == 10){cuteobject.image = "star/physics.png"; //AM
+                                           cute.image = "star/physics.png";}//AM
+                else if (hours == 11){cuteobject.image = "star/read.png";//AM
+                                           cute.image = "star/read.png";} //AM
+                else {cuteobject.image = " ";//AM
+                                           cute.image = " ";} //AM
+                
+   }     
+  
+   if (util.zeroPad(hours) >= 12){
+                 if (hours == 4){cuteobject.image = "star/soccer.png"//PM
+                                            cute.image = "star/soccer.png";}//PM
+                 else if (hours == 5){cuteobject.image = "star/workout.png"//PM
+                                            cute.image = "star/workout.png";}//PM
+                 else if (hours == 6){cuteobject.image = "star/carrot.png";
+                                      cute.image = "star/carrot.png";}
+                 else if (hours ==7){cuteobject.image = "star/ukelele.png"//PM
+                                            cute.image = "star/ukelele.png";}//PM
+                 else if (hours == 8){cuteobject.image = "star/watchmovie.png"//PM
+                                            cute.image = "star/watchmovie.png";}//PM
+                 else if (hours == 9){cuteobject.image = "star/toothbrush.png";//BOTH 9
+                                            cute.image = "star/toothbrush.png";}//BOTH 9
+                 else if (hours == 10){cuteobject.image = "star/zzz.png";//PM
+                                            cute.image = "star/zzz.png";}//PM
+                 else if (hours == 11){cuteobject.image = "star/sleeping.png";//PM
+                                             cute.image = "star/sleeping.png";}//PM
+                 else{cuteobject.image = " ";//AM
+                                             cute.image = " ";} //AM
+  
+  */
+  
+/*
+if (HeartRateSensor) {
+   const hrm = new HeartRateSensor();
+   hrm.addEventListener("reading", () => {
+     heartlabel.text =" " + hrm.heartRate;
+   });
+   hrm.start();
+} else {
+   console.log("This device does NOT have a HeartRateSensor!");
+}
+*/
+
 
