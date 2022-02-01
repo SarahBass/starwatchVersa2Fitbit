@@ -19,6 +19,19 @@
   
 }
 
+.showLabel {
+  fill: white;
+  letter-spacing: 5;
+  font-size: 80;
+  font-family: System-Regular;
+  text-length: 32;
+  text-anchor: middle;
+  opacity: 1.0; 
+  x: 50%;
+  y: 90%;
+  
+}
+
 .mydarkLabel {
   fill: darkturquoise;
   letter-spacing: 5;
@@ -145,6 +158,8 @@
   y: -4%;
    
 }
+
+
 
 
 .minute {
