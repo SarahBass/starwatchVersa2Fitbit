@@ -32,6 +32,7 @@ import { display } from "display";
 import { today as userActivity } from "user-activity";
 import {goals, today} from "user-activity";
 import { HeartRateSensor } from "heart-rate";
+
 /*--- Create Local Variables for Information Storage ---*/
 let daytext = "day";
 let monthtext = "month";
@@ -276,7 +277,17 @@ function checkAndUpdateBatteryLevel() {
   batteryLabel.text = `${battery.chargeLevel}%`;
   if (battery.chargeLevel > 30){ batteryLabel.class = "labelgreen";}
   else {batteryLabel.class = "labelred";
-       battery.onchange = (charger, evt) => {batteryLabel.class = "labelgreen";}}
+        battery.onchange = (charger, evt) => {batteryLabel.class = "labelgreen";}}
+}
+ 
+function checkHeart(){
+if (HeartRateSensor) {
+   const hrm = new HeartRateSensor();
+   hrm.addEventListener("reading", () => {
+     heartlabel.text =" " + hrm.heartRate;
+   });
+   hrm.start();
+} else {console.log("This device does NOT have a HeartRateSensor!");}
 }
   
 /*--- Change Date and Background Functions ---*/
@@ -433,35 +444,6 @@ function stand(){
 }
 /*----------------------------END OF FUNCTIONS--------------------------------*/
 /*-------------------------------END OF CODE----------------------------------*/
-  /*
-  if (util.zeroPad(hours) <12){
-                if (hours == 8){cuteobject.image = "star/apple.png";
-                                           cute.image = "star/apple.png";}
-                else if (hours == 9){cuteobject.image = "star/toothbrush.png";//BOTH 9
-                                           cute.image = "star/toothbrush.png";}//BOTH 9
-                else if (hours == 10){cuteobject.image = "star/physics.png"; 
-                                           cute.image = "star/physics.png";}
-                else if (hours == 11){cuteobject.image = "star/read.png";//AM
-                                           cute.image = "star/read.png";} //AM
-                else {cuteobject.image = " ";//AM
-                                           cute.image = " ";} //AM
-                
-   }     
-  
 
-  
-  */
-  
-/*
-if (HeartRateSensor) {
-   const hrm = new HeartRateSensor();
-   hrm.addEventListener("reading", () => {
-     heartlabel.text =" " + hrm.heartRate;
-   });
-   hrm.start();
-} else {
-   console.log("This device does NOT have a HeartRateSensor!");
-}
-*/
 
 
