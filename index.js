@@ -271,12 +271,12 @@ clock.ontick = (evt) => {
 /*----------------------------START OF FUNCTIONS--------------------------------*/
 
  /*--- Change Battery RED , GREEN & CHARGE ---*/  
-battery.onchange = (charger, evt) => {batteryLabel.class = "labelgreen";}
 
 function checkAndUpdateBatteryLevel() {
   batteryLabel.text = `${battery.chargeLevel}%`;
   if (battery.chargeLevel > 30){ batteryLabel.class = "labelgreen";}
-  else {batteryLabel.class = "labelred";}
+  else {batteryLabel.class = "labelred";
+       battery.onchange = (charger, evt) => {batteryLabel.class = "labelgreen";}}
 }
   
 /*--- Change Date and Background Functions ---*/
