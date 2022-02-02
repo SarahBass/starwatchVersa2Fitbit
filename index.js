@@ -152,8 +152,8 @@ clock.ontick = (evt) => {
                                  }                            
   
   
-  //Get Prize from Steps Goal goals.steps
-  if (userActivity.adjusted.steps > 180){goalreached = "show";}
+  //Get Prize from Steps Goal 
+  if (userActivity.adjusted.steps > goals.steps){goalreached = "show";}
   
   
    /*--- OPTION 2: TIME IMAGES FOR 12 HOUR CLOCK---*/
