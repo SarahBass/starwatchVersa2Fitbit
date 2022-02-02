@@ -31,14 +31,12 @@ import { battery } from 'power';
 import { display } from "display";
 import { today as userActivity } from "user-activity";
 import {goals, today} from "user-activity";
-import { HeartRateSensor } from "heart-rate";
+
 
 /*--- Create Local Variables for Information Storage ---*/
 let daytext = "day";
 let monthtext = "month";
 let goalreached = "NONE";
-var selectnumber = Math.floor(Math.random() * 12);
-var selectlessnumber = Math.floor(Math.random() * 5);
 
 
 /*--- Import Information from index.gui ---*/
@@ -68,7 +66,6 @@ clock.granularity = "seconds";
 const myLabel = document.getElementById("myLabel");
 const batteryLabel = document.getElementById("batteryLabel");
 const stepsLabel = document.getElementById("stepsLabel");
-const calendarLabel = document.getElementById("calendarLabel");
 const firelabel = document.getElementById("firelabel");
 const boltlabel = document.getElementById("boltlabel");
 const heartlabel = document.getElementById("heartlabel");
@@ -88,14 +85,17 @@ clock.ontick = (evt) => {
   let mins = util.zeroPad(today.getMinutes());
   let seconds = today.getSeconds();
 
+ 
+
  /*--- Update Stats for Screen ---*/
   updateScene();
   stepsLabel.text = userActivity.adjusted.steps;
   firelabel.text = userActivity.adjusted.calories;
-  boltlabel.text = goals.activeZoneMinutes.total;
-  heartlabel.text = "0"; 
+  boltlabel.text = userActivity.adjusted.activeZoneMinutes.total;
+  heartlabel.text = goals.activeZoneMinutes.total;
   checkAndUpdateBatteryLevel();
-   
+  
+  
   //AM PM -Change the image based on 24 hours
   if (util.zeroPad(hours) <12){ampm.image = "am.png";
                               if ((util.zeroPad(hours) > 1) && (util.zeroPad(hours) < 7)) {
@@ -148,11 +148,13 @@ clock.ontick = (evt) => {
                                  else {
                                     cuteobject.image = " ";
                                     cute.image = " ";}
+                                 
                                  }                            
   
   
-  //Get Prize from Steps Goal
-  if (userActivity.adjusted.steps > 3000){goalreached = "show";}
+  //Get Prize from Steps Goal goals.steps
+  if (userActivity.adjusted.steps > 180){goalreached = "show";}
+  
   
    /*--- OPTION 2: TIME IMAGES FOR 12 HOUR CLOCK---*/
   //set class of each # IMAGE individually if needed for formatting
@@ -184,7 +186,7 @@ clock.ontick = (evt) => {
   else if (mins%10 == 2 ){minutehand2.image = "minutesfile/2.png";
                           minutehand2.class = "minute2";}
   else if (mins%10 == 3 ){minutehand2.image = "minutesfile/3.png";
-                          minutehand.class =  "minute2";}
+                          minutehand2.class =  "minute2";}
   else if (mins%10 == 4 ){minutehand2.image = "minutesfile/4.png";}
   else if (mins%10 == 5 ){minutehand2.image = "minutesfile/5.png";}
   else if (mins%10 == 6 ){minutehand2.image = "minutesfile/6.png";}
@@ -192,21 +194,18 @@ clock.ontick = (evt) => {
   else if (mins%10 == 8 ){minutehand2.image = "minutesfile/8.png";}
   else if (mins%10 == 9 ){minutehand2.image = "minutesfile/9.png";}
   else if (mins%10 == 0 ){minutehand2.image = "minutesfile/0.png";
-                          minutehand.class = "minute2";}
-  else{minutehand.image = "minutesfile/00.png";
-      minutehand2.image = " ";}
+                          minutehand2.class = "minute2";}
+  else{minutehand2.image = " ";}
   
   //Minute hand /10 will return tens digit, but ints don't exist in Javascript
   //Use the parseInt function to turn quotient into an integer
-       if ( parseInt(mins/10) == 1 ){minutehand.image = "minutesfile/1.png";}         
-  else if (parseInt(mins/10) == 2 ){minutehand.image = "minutesfile/2.png";}
-  else if ( parseInt(mins/10) == 3 ){minutehand.image = "minutesfile/3.png";}
-  else if (parseInt(mins/10) == 4 ){ minutehand.image = "minutesfile/4.png";}                                 
-  else if (parseInt(mins/10) == 5 ){ minutehand.image = "minutesfile/5.png";}
-  else if (parseInt(mins/10) == 6 ){ minutehand.image = "minutesfile/6.png";}
-  else if (parseInt(mins/10) == 0 ){ minutehand.image = "minutesfile/0.png";}
-  else{minutehand.image = "minutesfile/00.png";
-      minutehand2.image = " ";}
+       if (parseInt(mins/10) == 1 ){ minutehand.image = "minutesfile/1.png";}         
+       if (parseInt(mins/10) == 2 ){ minutehand.image = "minutesfile/2.png";}
+       if (parseInt(mins/10) == 3 ){ minutehand.image = "minutesfile/3.png";}
+       if (parseInt(mins/10) == 4 ){ minutehand.image = "minutesfile/4.png";}                                 
+       if (parseInt(mins/10) == 5 ){ minutehand.image = "minutesfile/5.png";}
+       if (parseInt(mins/10) == 6 ){ minutehand.image = "minutesfile/6.png";}
+       if (parseInt(mins/10) == 0 ){ minutehand.image = "minutesfile/0.png";}
   } 
     
     /*--- OPTION 2: TIME TEXT FOR 24 HOUR CLOCK ---*/
@@ -258,10 +257,7 @@ clock.ontick = (evt) => {
        stand();
       }
 
-   //RESET THE RANDOM NUMBER EVERY 24 HOURS
-   if (hours === 0 && mins === 0) {selectnumber = Math.floor(Math.random() * 12);
-                                   selectlessnumber = Math.floor(Math.random() * 5);}
-  
+   
 
   /*--- Battery Functions ---*/
   display.addEventListener('change', function () { if (this.on) {checkAndUpdateBatteryLevel();}
@@ -280,15 +276,6 @@ function checkAndUpdateBatteryLevel() {
         battery.onchange = (charger, evt) => {batteryLabel.class = "labelgreen";}}
 }
  
-function checkHeart(){
-if (HeartRateSensor) {
-   const hrm = new HeartRateSensor();
-   hrm.addEventListener("reading", () => {
-     heartlabel.text =" " + hrm.heartRate;
-   });
-   hrm.start();
-} else {console.log("This device does NOT have a HeartRateSensor!");}
-}
   
 /*--- Change Date and Background Functions ---*/
   function updateScene() {
@@ -400,13 +387,13 @@ if (HeartRateSensor) {
 //Animation Functions   
 function float (){
 //if goal is reached give prize                         
-if (goalreached == "show"){ 
-                           if (months == 2){star.image = "star/bunny" + selectlessnumber + ".png"}
-                           else if (months == 9){star.image = "star/ghost" + selectlessnumber + ".png"}
-                           else if (months == 11){star.image = "star/santa" + selectlessnumber + ".png"}
-                           else {star.image = "star/"+ selectnumber+ ".png"}}
+       if (goalreached == "show"){ 
+                           if ((months == 2)||(months == 3)){star.image = "star/bunny" + (dates % 10) + ".png";}
+                           else if (months == 9){star.image = "star/ghost" + (dates % 10) + ".png";}
+                           else if (months == 11){star.image = "star/santa" + (dates % 10) + ".png";}
+                           else {star.image = "star/"+ (dates % 10) + ".png";}}
 //if goal is not reached yellow star
-else{star.image = "star/yellow.png";}
+       else{star.image = "star/yellow.png";}
   
   eyes.image = "star/eyes.png";
   mouth.image;
@@ -424,12 +411,15 @@ else{star.image = "star/yellow.png";}
 
 function stand(){
   if (goalreached == "show"){ 
-                             if (months == 2){starobject.image = "star/bunny" + selectlessnumber + ".png"}
-                             else if (months == 9){starobject.image = "star/ghost" + selectlessnumber + ".png"}
-                             else if (months == 11){starobject.image = "star/santa" + selectlessnumber + ".png"}
-                             else {starobject.image = "star/"+ selectnumber+ ".png"}
+                           if ((months == 2)||(months == 3)){star.image = "star/bunny" + (dates % 10) + ".png";}
+                           else if (months == 9){star.image = "star/ghost" + (dates % 10) + ".png";}
+                           else if (months == 11){star.image = "star/santa" + (dates % 10) + ".png";}
+                           else {star.image = "star/"+ (dates % 10) + ".png";}}
+  
 //if goal is not reached yellow star
-}else{starobject.image = "star/yellow.png";}
+  else{starobject.image = "star/yellow.png";}
+  
+  
   star.image = " ";
   eyes.image = " ";
   mouth.image = " ";
