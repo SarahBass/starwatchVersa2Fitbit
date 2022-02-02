@@ -411,13 +411,11 @@ function float (){
 
 function stand(){
   if (goalreached == "show"){ 
-                           if ((months == 2)||(months == 3)){star.image = "star/bunny" + (dates % 10) + ".png";}
-                           else if (months == 9){star.image = "star/ghost" + (dates % 10) + ".png";}
-                           else if (months == 11){star.image = "star/santa" + (dates % 10) + ".png";}
-                           else {star.image = "star/"+ (dates % 10) + ".png";}}
-  
-//if goal is not reached yellow star
-  else{starobject.image = "star/yellow.png";}
+                           if ((months == 2)||(months == 3)){starobject.image = "star/bunny" + (dates % 10) + ".png";}
+                           else if (months == 9){starobject.image = "star/ghost" + (dates % 10) + ".png";}
+                           else if (months == 11){starobject.image = "star/santa" + (dates % 10) + ".png";}
+                           else {starobject.image = "star/"  (dates % 10) + ".png";}
+  } else{ starobject.image = "star/yellow.png";}
   
   
   star.image = " ";
