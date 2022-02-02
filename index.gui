@@ -21,24 +21,24 @@
 
    <image id="colon"  class="colon" href="minutesfile/colon.png" />
    <image id="ampm"  class="ampm" href="am.png" />
-   <image id="hourhand"  class="hour" href="hoursfile/hour12.png" />
-   <image id="minutehand"  class="minute" href="minutesfile/00.png" />
-   <image id="minutehand2"  class="minute2" href="minutesfile/0.png" />
-   <image id="starobject"  class="staranimate" href=" " />
-   <image id="eyesobject"  class="staranimate" href=" " />
-   <image id="mouthobject"  class="staranimate" href=" " />
-   <image id="cheeksobject"  class="staranimate" href=" " />
-   <image id="cuteobject"  class="staranimate" href=" " />
+   <image id="hourhand"  class="hour" />
+   <image id="minutehand"  class="minute" />
+   <image id="minutehand2"  class="minute2" />
+   <image id="starobject"  class="staranimate"  />
+   <image id="eyesobject"  class="staranimate"  />
+   <image id="mouthobject"  class="staranimate"  />
+   <image id="cheeksobject"  class="staranimate"  />
+   <image id="cuteobject"  class="staranimate" />
     
  <!-- Animation Group called Demo -->
   <svg>
   <defs>
     <symbol id="demo">
       <g id="demogroup" transform="translate(0%,0%)" pointer-events="visible">
-        <image id="star"  class="staranimate" href="star/yellow.png" />
-      <image id="eyes"  class="staranimate" href="star/eyes.png" />
-      <image id="mouth"  class="staranimate" href="star/tinymouth.png" />
-     <image id="cheeks"  class="staranimate" href="star/cheeks.png" />
+        <image id="star"  class="staranimate"  />
+      <image id="eyes"  class="staranimate"  />
+      <image id="mouth"  class="staranimate"  />
+     <image id="cheeks"  class="staranimate" />
      <image id="cute"  class="staranimate" />
       <animateTransform attributeType="translate"
       from="0%,0%" to="0%,-5%" begin="enable" dur="3" /> 
