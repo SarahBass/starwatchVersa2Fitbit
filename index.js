@@ -199,8 +199,10 @@ clock.ontick = (evt) => {
   
   //Minute hand /10 will return tens digit, but ints don't exist in Javascript
   //Use the parseInt function to turn quotient into an integer
-       if (parseInt(mins/10) == 1 ){ minutehand.image = "minutesfile/1.png";}         
-       if (parseInt(mins/10) == 2 ){ minutehand.image = "minutesfile/2.png";}
+       if (parseInt(mins/10) == 1 ){ minutehand.image = "minutesfile/1.png";
+                                     minutehand.class = "minute1";}         
+       if (parseInt(mins/10) == 2 ){ minutehand.image = "minutesfile/2.png";
+                                     minutehand.class = "minute"; }
        if (parseInt(mins/10) == 3 ){ minutehand.image = "minutesfile/3.png";}
        if (parseInt(mins/10) == 4 ){ minutehand.image = "minutesfile/4.png";}                                 
        if (parseInt(mins/10) == 5 ){ minutehand.image = "minutesfile/5.png";}
@@ -391,7 +393,7 @@ function float (){
                            if ((months == 2)||(months == 3)){star.image = "star/bunny" + (dates % 10) + ".png";}
                            else if (months == 9){star.image = "star/ghost" + (dates % 10) + ".png";}
                            else if (months == 11){star.image = "star/santa" + (dates % 10) + ".png";}
-                           else {star.image = "star/"+ (dates % 10) + ".png";}}
+                           else {star.image = "star/" + (dates % 10) + ".png";}}
 //if goal is not reached yellow star
        else{star.image = "star/yellow.png";}
   
@@ -414,7 +416,7 @@ function stand(){
                            if ((months == 2)||(months == 3)){starobject.image = "star/bunny" + (dates % 10) + ".png";}
                            else if (months == 9){starobject.image = "star/ghost" + (dates % 10) + ".png";}
                            else if (months == 11){starobject.image = "star/santa" + (dates % 10) + ".png";}
-                           else {starobject.image = "star/"  (dates % 10) + ".png";}
+                           else {starobject.image = "star/" + (dates % 10) + ".png";}
   } else{ starobject.image = "star/yellow.png";}
   
   
