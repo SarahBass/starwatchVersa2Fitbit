@@ -22,7 +22,6 @@ https://developer.mozilla.org/en-US/docs
 */
 
 /*--- Import Information from user Account ---*/
-import { geolocation } from "geolocation";
 import clock from "clock";
 import * as document from "document";
 import { preferences } from "user-settings";
@@ -159,7 +158,8 @@ clock.ontick = (evt) => {
    /*--- OPTION 2: TIME IMAGES FOR 12 HOUR CLOCK---*/
   //set class of each # IMAGE individually if needed for formatting
   if (preferences.clockDisplay === "12h") {
-
+    colon.image = "minutesfile/colon.png";
+    myLabel.class = "myLabel";
     hours = hours % 12 || 12;
   
   if (hours == 1){hourhand.image = "hoursfile/hour1.png";
@@ -216,7 +216,11 @@ clock.ontick = (evt) => {
     else { 
     hours = util.zeroPad(hours);
     myLabel.text = `${hours}:${mins}`; 
-    mylabel.class = "showLabel";
+    myLabel.class = "showLabel";
+    hourhand.image = " ";
+    minutehand.image = " ";  
+    minutehand2.image = " ";
+    colon.image = " ";
   }
   
   /*----------------------------SHOW CLOCK END----------------------------------*/
