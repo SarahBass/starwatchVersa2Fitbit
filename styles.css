@@ -20,15 +20,15 @@
 }
 
 .showLabel {
-  fill: azure;
+  fill: yellow;
   letter-spacing: 5;
-  font-size: 55;
+  font-size: 70;
   font-family: System-Bold;
   text-length: 32;
   text-anchor: middle;
-  opacity: 0.5; 
-  x: 50%;
-  y: 14%;
+  opacity: 0.7; 
+  x: 46%;
+  y: 20%;
   
 }
 
@@ -80,7 +80,7 @@
 
 .labelpurple {
   fill: deeppink;
-  letter-spacing: 2;
+  letter-spacing: 0;
   font-size: 20;
   font-family: System-Bold;
   text-length: 32;
