@@ -19,7 +19,7 @@
   
   <!-- Images -->
 
-   <image id="colon"  class="colon" href="minutesfile/colon.png" />
+   <image id="colon"  class="colon" />
    <image id="ampm"  class="ampm" href="am.png" />
    <image id="hourhand"  class="hour" />
    <image id="minutehand"  class="minute" />
