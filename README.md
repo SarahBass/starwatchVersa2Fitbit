@@ -1,5 +1,5 @@
 # starwatchVersa2Fitbit
-Versa2 SDK 4.3 
+Versa2 SDK 4.3 - COMPLETE
 
 Stats heavy watch, filled with cute interactions, daily changing pictures, and fun surprises.
 
